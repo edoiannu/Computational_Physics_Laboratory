@@ -88,12 +88,12 @@ __global__ void matrix_product( dato* A, dato* B, dato* C,int width) {
     //Iterazione sulle sottomatrici in cui viene suddiviso il calcolo degli elementi del blocco 
     for (int a = aBegin, b = bBegin; a <= aEnd; a += aStep, b += bStep) {
 
-        //Dichiarazione della variabile in cui salvare la sottomatrice di A in esame
+    //Dichiarazione della variabile in cui salvare la sottomatrice di A in esame
 	__shared__ dato As[THREADS][THREADS];
         
-        __shared__ dato Bs[THREADS][THREADS];
+    __shared__ dato Bs[THREADS][THREADS]; // 'shared' memoria condivisa dai blocchi
 
-        //Carico gli elementi di ciascuna sottomatrice in memoria condivisa: ogni thread del 
+    //Carico gli elementi di ciascuna sottomatrice in memoria condivisa: ogni thread del 
 	//blocco carica un elemento! 	      
 	As[it][jt] = A[a +  width*it + jt]; 
 	Bs[it][jt] = B[b +  width*it + jt];
