@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     74908,       1895]
-NotebookOptionsPosition[     70280,       1810]
-NotebookOutlinePosition[     70685,       1826]
-CellTagsIndexPosition[     70642,       1823]
+NotebookDataLength[     74949,       1896]
+NotebookOptionsPosition[     70321,       1811]
+NotebookOutlinePosition[     70726,       1827]
+CellTagsIndexPosition[     70683,       1824]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1721,9 +1721,10 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell["Relativit\[AGrave]", "Subtitle",
- CellChangeTimes->{{3.9545767674588013`*^9, 
-  3.954576846508369*^9}},ExpressionUUID->"ec2385ea-fcd0-40d2-8310-\
+Cell["Relativity", "Subtitle",
+ CellChangeTimes->{{3.9545767674588013`*^9, 3.954576846508369*^9}, {
+  3.954749893327853*^9, 
+  3.954749893616088*^9}},ExpressionUUID->"ec2385ea-fcd0-40d2-8310-\
 7e8368e912d9"],
 
 Cell[CellGroupData[{
@@ -1890,11 +1891,11 @@ Cell[63064, 1580, 314, 5, 29, "Input",ExpressionUUID->"525d7633-2188-4ea9-9f1e-1
 Cell[63381, 1587, 3966, 131, 93, "Output",ExpressionUUID->"fe2af202-30af-4f92-993c-9ca44319ad90"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[67384, 1723, 166, 3, 52, "Subtitle",ExpressionUUID->"ec2385ea-fcd0-40d2-8310-7e8368e912d9"],
+Cell[67384, 1723, 207, 4, 52, "Subtitle",ExpressionUUID->"ec2385ea-fcd0-40d2-8310-7e8368e912d9"],
 Cell[CellGroupData[{
-Cell[67575, 1730, 1995, 54, 135, "Input",ExpressionUUID->"15b3ed0e-924e-43ec-8a2b-5047bafe67c2"],
-Cell[69573, 1786, 452, 13, 33, "Output",ExpressionUUID->"4e04c446-1187-4965-a2e4-25600dbd3835"],
-Cell[70028, 1801, 224, 5, 52, "Output",ExpressionUUID->"155a9cdb-5895-435a-b4a1-6e9b74c62830"]
+Cell[67616, 1731, 1995, 54, 135, "Input",ExpressionUUID->"15b3ed0e-924e-43ec-8a2b-5047bafe67c2"],
+Cell[69614, 1787, 452, 13, 33, "Output",ExpressionUUID->"4e04c446-1187-4965-a2e4-25600dbd3835"],
+Cell[70069, 1802, 224, 5, 33, "Output",ExpressionUUID->"155a9cdb-5895-435a-b4a1-6e9b74c62830"]
 }, Open  ]]
 }, Open  ]]
 }

@@ -1,0 +1,807 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     36807,        799]
+NotebookOptionsPosition[     35872,        774]
+NotebookOutlinePosition[     36272,        790]
+CellTagsIndexPosition[     36229,        787]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"grafobase", " ", "=", " ", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"1", ",", " ", 
+        RowBox[{"-", "1"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"2", ",", " ", 
+        RowBox[{"-", "1"}]}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"3", ",", " ", 
+        RowBox[{"-", "1"}]}], "}"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"mu", "[", "1", "]"}], ",", " ", 
+      RowBox[{"mu", "[", "2", "]"}], ",", " ", 
+      RowBox[{"mu", "[", "3", "]"}]}], "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"c", "[", "1", "]"}], ",", " ", 
+      RowBox[{"c", "[", "2", "]"}], ",", " ", 
+      RowBox[{"c", "[", "3", "]"}]}], "}"}]}], "}"}]}]], "Input",
+ CellChangeTimes->{
+  3.95499594643225*^9, {3.954996349737661*^9, 3.954996362965455*^9}, {
+   3.9549965148337793`*^9, 3.9549965189315157`*^9}, {3.954996549913043*^9, 
+   3.954996552004483*^9}, {3.9549981552695208`*^9, 3.954998169510976*^9}},
+ CellLabel->"In[69]:=",ExpressionUUID->"29e76fa6-d13f-4814-87fb-b25f304288d2"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", 
+       RowBox[{"-", "1"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", 
+       RowBox[{"-", "1"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"3", ",", 
+       RowBox[{"-", "1"}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"mu", "[", "1", "]"}], ",", 
+     RowBox[{"mu", "[", "2", "]"}], ",", 
+     RowBox[{"mu", "[", "3", "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"c", "[", "1", "]"}], ",", 
+     RowBox[{"c", "[", "2", "]"}], ",", 
+     RowBox[{"c", "[", "3", "]"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.954995947957836*^9, {3.954996355968627*^9, 3.954996368446002*^9}, 
+   3.954996519553029*^9, 3.954996552371573*^9, 3.954996872967166*^9, 
+   3.954998172835*^9},
+ CellLabel->"Out[69]=",ExpressionUUID->"57769978-1356-400d-840f-16b1c150571d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "comando", " ", "che", " ", "aggiunge", " ", "un", " ", "vertice", " ", 
+    "a", " ", "3", " ", "a", " ", "una", " ", "linea", " ", "di", " ", "un", " ",
+     "grafo", "\[IndentingNewLine]", "    ", 
+    RowBox[{"pos_", " ", ":", " ", 
+     RowBox[{"indice", " ", "del", " ", 
+      RowBox[{"segmento", "/", "coppia"}], " ", "di", " ", "numeri", " ", 
+      "che", " ", "voglio", " ", "rimpiazzare", "\[IndentingNewLine]", "  ", 
+      "ext_"}], " ", ":", " ", 
+     RowBox[{
+     "indice", " ", "del", " ", "punto", " ", "esterno", " ", "che", " ", 
+      "voglio", " ", "aggiungere", "\[IndentingNewLine]", "  ", 
+      RowBox[{"int_", " ", ":", " ", 
+       RowBox[{
+       "indice", " ", "del", " ", "punto", " ", "interno", " ", "che", " ", 
+        "voglio", " ", "aggiungere", "\[IndentingNewLine]", "grafo_"}], " ", ":",
+        " ", 
+       RowBox[{"grafo", " ", "che", " ", "sto", " ", "considerando"}]}]}]}]}],
+    "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"inserisci3", "[", 
+      RowBox[{
+      "pos_", ",", " ", "ext_", ",", " ", "int_", ",", " ", "grafo_"}], "]"}],
+      " ", ":=", " ", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"temp", ",", " ", "pippo"}], "}"}], " ", 
+       RowBox[{"(*", 
+        RowBox[{"'", 
+         RowBox[{"pippo", "'"}], " ", "\[EGrave]", " ", "un", " ", 
+         "contenitore", " ", "temporaneo"}], "*)"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "rimuovo", " ", "un", " ", "segmento", " ", "e", " ", "lo", " ", 
+         "rimpiazzo", " ", "con", " ", "3", " ", "altri", " ", "segmenti"}], 
+        "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "aggiunta", " ", "di", " ", "un", " ", "punto", " ", "nel", " ", 
+         "grafico"}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"temp", " ", "=", " ", 
+         RowBox[{"ReplacePart", "[", 
+          RowBox[{
+           RowBox[{"grafo", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"pippo", "[", " ", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"ext", ",", "int"}], "}"}], 
+             RowBox[{"(*", 
+              RowBox[{
+              "punto", " ", "esterno", " ", "che", " ", "si", " ", "attacca", 
+               " ", "al", " ", "nuovo", " ", "vertice"}], "*)"}], " ", ",", 
+             " ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"grafo", "[", 
+                RowBox[{"[", 
+                 RowBox[{"1", ",", "pos", ",", "1"}], "]"}], "]"}], ",", 
+               "int"}], "}"}], " ", ",", " ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"grafo", "[", 
+                RowBox[{"[", 
+                 RowBox[{"1", ",", "pos", ",", "2"}], "]"}], "]"}], ",", 
+               "int"}], "}"}]}], " ", 
+            RowBox[{"(*", 
+             RowBox[{
+              RowBox[{
+              "divide", " ", "in", " ", "due", " ", "la", " ", "linea", " ", 
+               "esterna", " ", "pos"}], "-", 
+              RowBox[{
+              "esima", " ", "aggiungendo", " ", "un", " ", "punto", " ", 
+               "int", " ", "al", " ", "suo", " ", "interno"}]}], "*)"}], 
+            "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{"1", ",", "pos"}], "}"}]}], "]"}]}], ";", " ", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"sostituisco", " ", 
+           RowBox[{"l", "'"}], "elemento", " ", "pos"}], "-", "esimo"}], 
+         "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"1", " ", "->", " ", 
+           RowBox[{"3", " ", "non", " ", 
+            RowBox[{"e", "'"}], " ", "una", " ", "sostituzione", " ", 
+            "ammessa"}]}], ",", " ", 
+          RowBox[{
+          "per", " ", "cui", " ", "usiamo", " ", "il", " ", "contenitore", " ",
+            "pippo", " ", "come", " ", "un", " ", "unico", " ", "oggetto"}]}],
+          "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"temp", " ", "=", 
+         RowBox[{"temp", "/.", 
+          RowBox[{"{", 
+           RowBox[{"pippo", "->", "Sequence"}], "}"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Clear", "[", "pippo", "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "aggiunta", " ", "di", " ", "un", " ", "indice", " ", "di", " ", 
+          "Lorentz"}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"temp", " ", "=", " ", 
+         RowBox[{"ReplacePart", "[", 
+          RowBox[{
+           RowBox[{"grafo", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"pippo", "[", " ", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"ext", ",", "int"}], "}"}], 
+             RowBox[{"(*", 
+              RowBox[{
+              "punto", " ", "esterno", " ", "che", " ", "si", " ", "attacca", 
+               " ", "al", " ", "nuovo", " ", "vertice"}], "*)"}], " ", ",", 
+             " ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"grafo", "[", 
+                RowBox[{"[", 
+                 RowBox[{"1", ",", "pos", ",", "1"}], "]"}], "]"}], ",", 
+               "int"}], "}"}], " ", ",", " ", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"grafo", "[", 
+                RowBox[{"[", 
+                 RowBox[{"1", ",", "pos", ",", "2"}], "]"}], "]"}], ",", 
+               "int"}], "}"}]}], " ", 
+            RowBox[{"(*", 
+             RowBox[{
+              RowBox[{
+              "divide", " ", "in", " ", "due", " ", "la", " ", "linea", " ", 
+               "esterna", " ", "pos"}], "-", 
+              RowBox[{
+              "esima", " ", "aggiungendo", " ", "un", " ", "punto", " ", 
+               "int", " ", "al", " ", "suo", " ", "interno"}]}], "*)"}], 
+            "]"}], ",", "\[IndentingNewLine]", "2"}], "]"}]}], ";", " ", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"sostituisco", " ", 
+           RowBox[{"l", "'"}], "elemento", " ", "pos"}], "-", "esimo"}], 
+         "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "Sequence", " ", "\[EGrave]", " ", "una", " ", "funzione", " ", 
+          "speciale", " ", "che", " ", "spacchetta", " ", "gli", " ", 
+          "argomenti", " ", "di", " ", "pippo", " ", "nella", " ", "lista", " ",
+           "in", " ", "cui", " ", "si", " ", "trova"}], "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"Return", "[", "temp", "]"}]}]}], " ", 
+      RowBox[{"(*", 
+       RowBox[{"ritorna", " ", "il", " ", "grafo", " ", "modificato"}], 
+       "*)"}], "\[IndentingNewLine]", "]"}]}], ";"}], " ", "\[IndentingNewLine]", 
+   RowBox[{"inserisci3", "[", 
+    RowBox[{"1", ",", " ", "4", ",", " ", 
+     RowBox[{"-", "2"}], ",", " ", "grafobase"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.954995952439392*^9, 3.954995971354087*^9}, 
+   3.954996050975075*^9, {3.954996645075749*^9, 3.954996663286968*^9}, {
+   3.954996770947275*^9, 3.954996888474732*^9}, {3.9549969842570333`*^9, 
+   3.9549970421041718`*^9}, {3.954997080128714*^9, 3.95499709255252*^9}, {
+   3.9549973861965027`*^9, 3.954997395960943*^9}, {3.9549974799335747`*^9, 
+   3.954997544286469*^9}, {3.954997586171955*^9, 3.954997594955986*^9}, {
+   3.95499762876162*^9, 3.954997631283086*^9}, {3.954997811836031*^9, 
+   3.954997816795987*^9}, {3.9549979017548857`*^9, 3.954997901857203*^9}, {
+   3.954997942566972*^9, 3.954997951228788*^9}, {3.954997989929064*^9, 
+   3.9549980569983664`*^9}, {3.954998119714369*^9, 3.9549981198032846`*^9}, {
+   3.954998197676137*^9, 
+   3.9549982091726503`*^9}},ExpressionUUID->"bd777548-d258-4cc1-9306-\
+17bf92059362"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"mu", "[", 
+    RowBox[{"pippo$29650", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"4", ",", 
+        RowBox[{"-", "2"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", 
+        RowBox[{"-", "2"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"-", "1"}], ",", 
+        RowBox[{"-", "2"}]}], "}"}]}], "]"}], "]"}], ",", 
+   RowBox[{"mu", "[", "2", "]"}], ",", 
+   RowBox[{"mu", "[", "3", "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.954996813557536*^9, {3.954996844346457*^9, 3.954996888926586*^9}, 
+   3.954997044147397*^9, 3.954997598812125*^9, 3.9549976318887997`*^9, 
+   3.954997817866647*^9, 3.9549979024975033`*^9, 3.9549981758428*^9},
+ CellLabel->"Out[71]=",ExpressionUUID->"0cb43154-5e30-4e7a-8cee-756423545b8b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"??", " ", "ReplacePart"}]], "Input",
+ CellChangeTimes->{{3.954997399346076*^9, 3.9549974009156723`*^9}},
+ CellLabel->"In[60]:=",ExpressionUUID->"575fa192-e410-4b4b-be95-54733b1b5f83"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = True, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox[
+             TagBox[
+              TooltipBox[
+               StyleBox["\<\" Symbol\"\>", "InformationRowLabel",
+                StripOnInput->False],
+               "\"Symbol\"",
+               TooltipStyle->"TextStyling"],
+              Annotation[#, "Symbol", "Tooltip"]& ], "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox[
+           PaneBox[
+            TooltipBox[
+             ButtonBox[
+              PaneSelectorBox[{False->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIcon"],
+                ImageSizeCache->{13., {3.6875, 9.3125}}], True->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIconHot"],
+                ImageSizeCache->{13., {3.6875, 9.3125}}]}, Dynamic[
+                CurrentValue["MouseOver"]]],
+              Appearance->None,
+              BaseStyle->"Link",
+              ButtonData->"paclet:ref/ReplacePart",
+              ButtonNote->"paclet:ref/ReplacePart"],
+             "\"paclet:ref/ReplacePart\""],
+            FrameMargins->{{0, 4}, {0, 2}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", RowBox[{StyleBox[\\\"i\
+\\\", \\\"TI\\\"], \\\"\[Rule]\\\", StyleBox[\\\"new\\\", \\\"TI\\\"]}]}], \\\
+\"]\\\"}]\\) yields an expression in which the \
+\\!\\(\\*StyleBox[RowBox[{StyleBox[\\\"i\\\", \\\"TI\\\"], \\\"\[Null]\\\"}]]\
+\\)\\!\\(\\*SuperscriptBox[\\\"\[Null]\\\", \\\"th\\\"]\\) part of \
+\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) is replaced by \
+\\!\\(\\*StyleBox[\\\"new\\\", \\\"TI\\\"]\\). \
+\\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", RowBox[{StyleBox[\\\"expr\
+\\\", \\\"TI\\\"], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\"], \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"\[Rule]\\\", \
+SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
+\\\"TR\\\"]]}], \\\",\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \
+\\\"TI\\\"], StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"\[Rule]\\\", \
+SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], StyleBox[\\\"2\\\", \
+\\\"TR\\\"]]}], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\
+\\\"}]}], \\\"]\\\"}]\\) replaces parts at positions \
+\\!\\(\\*SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \\\
+\"TI\\\"]]\\) by \\!\\(\\*SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], \
+StyleBox[\\\"n\\\", \\\"TI\\\"]]\\). \\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \
+\\\"[\\\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"i\\\", \\\"TI\\\"], \
+\\\",\\\", StyleBox[\\\"j\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}], \\\"\[Rule]\\\", \
+StyleBox[\\\"new\\\", \\\"TI\\\"]}]}], \\\"]\\\"}]\\) replaces the part at \
+position \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"i\\\", \\\"TI\\\"], \
+\\\",\\\", StyleBox[\\\"j\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]\\). \
+\\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", RowBox[{StyleBox[\\\"expr\
+\\\", \\\"TI\\\"], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \
+\\\"TI\\\"], StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\",\\\", \
+SubscriptBox[StyleBox[\\\"j\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
+\\\"TR\\\"]], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\
+\"}], \\\"\[Rule]\\\", SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], \
+StyleBox[\\\"1\\\", \\\"TR\\\"]]}], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \
+\\\"TR\\\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) replaces parts at positions \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\
+\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"j\
+\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]\\) by \
+\\!\\(\\*SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \
+\\\"TI\\\"]]\\). \\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
+\\\"TR\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"j\\\", \\\"TI\\\"], \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\
+\"TR\\\"]}], \\\"}\\\"}], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \
+\\\"TR\\\"]}], \\\"}\\\"}], \\\"\[Rule]\\\", StyleBox[\\\"new\\\", \
+\\\"TI\\\"]}]}], \\\"]\\\"}]\\) replaces all parts at positions \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\
+\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"j\
+\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]\\) by \\!\\(\\*StyleBox[\\\"new\\\
+\", \\\"TI\\\"]\\). \\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", \
+StyleBox[RowBox[{\\\"i\\\", StyleBox[\\\"\[Rule]\\\", FontSlant -> \
+\\\"Plain\\\"], \\\"new\\\"}], \\\"TI\\\"], \\\"]\\\"}]\\) represents an \
+operator form of ReplacePart that can be applied to an expression.\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Documentation\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Documentation\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Documentation", "Tooltip"]& ], 
+                   TemplateBox[{
+                    
+                    TemplateBox[{
+                    "\"Local \[RightGuillemet]\"", "paclet:ref/ReplacePart", 
+                    "paclet:ref/ReplacePart", "Link", {
+                    RGBColor[0.9686274509803922, 0.4666666666666667, 0.]}, 
+                    BaseStyle -> {
+                    RGBColor[0.0784313725490196, 0.1568627450980392, 0.6]}}, 
+                    "HyperlinkTemplate"], "\"  \"", 
+                    StyleBox[
+                    "\"|\"", "InformationRowLabel", StripOnInput -> False], 
+                    "\"  \"", 
+                    TemplateBox[{"\"Web \[RightGuillemet]\"", {
+                    URL[
+                    "http://reference.wolfram.com/language/ref/ReplacePart.\
+html"], None}, "http://reference.wolfram.com/language/ref/ReplacePart.html", 
+                    "Hyperlink", {
+                    RGBColor[0.9686274509803922, 0.4666666666666667, 0.]}, 
+                    BaseStyle -> {
+                    RGBColor[0.0784313725490196, 0.1568627450980392, 0.6]}}, 
+                    "HyperlinkTemplate"]},
+                    "RowDefault"]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Options\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Options\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Options", "Tooltip"]& ], 
+                   RowBox[{"Heads", "\[Rule]", "Automatic"}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Attributes\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Attributes\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Attributes", "Tooltip"]& ], 
+                   RowBox[{"{", "Protected", "}"}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], "\<\"System`ReplacePart\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->{{6, 6}, {6, 3}}], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"],
+               ImageSizeCache->{10., {2.673828125, 7.326171875}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"],
+               ImageSizeCache->{10., {2.673828125, 7.326171875}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox[
+             TagBox[
+              TooltipBox[
+               StyleBox["\<\" Symbol\"\>", "InformationRowLabel",
+                StripOnInput->False],
+               "\"Symbol\"",
+               TooltipStyle->"TextStyling"],
+              Annotation[#, "Symbol", "Tooltip"]& ], "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox[
+           PaneBox[
+            TooltipBox[
+             ButtonBox[
+              PaneSelectorBox[{False->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIcon"]], True->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIconHot"]]}, Dynamic[
+                CurrentValue["MouseOver"]]],
+              Appearance->None,
+              BaseStyle->"Link",
+              ButtonData->"paclet:ref/ReplacePart",
+              ButtonNote->"paclet:ref/ReplacePart"],
+             "\"paclet:ref/ReplacePart\""],
+            FrameMargins->{{0, 4}, {0, 2}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", RowBox[{StyleBox[\\\"i\
+\\\", \\\"TI\\\"], \\\"\[Rule]\\\", StyleBox[\\\"new\\\", \\\"TI\\\"]}]}], \\\
+\"]\\\"}]\\) yields an expression in which the \
+\\!\\(\\*StyleBox[RowBox[{StyleBox[\\\"i\\\", \\\"TI\\\"], \\\"\[Null]\\\"}]]\
+\\)\\!\\(\\*SuperscriptBox[\\\"\[Null]\\\", \\\"th\\\"]\\) part of \
+\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) is replaced by \
+\\!\\(\\*StyleBox[\\\"new\\\", \\\"TI\\\"]\\). \
+\\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", RowBox[{StyleBox[\\\"expr\
+\\\", \\\"TI\\\"], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\"], \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"\[Rule]\\\", \
+SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
+\\\"TR\\\"]]}], \\\",\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \
+\\\"TI\\\"], StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"\[Rule]\\\", \
+SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], StyleBox[\\\"2\\\", \
+\\\"TR\\\"]]}], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\
+\\\"}]}], \\\"]\\\"}]\\) replaces parts at positions \
+\\!\\(\\*SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \\\
+\"TI\\\"]]\\) by \\!\\(\\*SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], \
+StyleBox[\\\"n\\\", \\\"TI\\\"]]\\). \\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \
+\\\"[\\\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"i\\\", \\\"TI\\\"], \
+\\\",\\\", StyleBox[\\\"j\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}], \\\"\[Rule]\\\", \
+StyleBox[\\\"new\\\", \\\"TI\\\"]}]}], \\\"]\\\"}]\\) replaces the part at \
+position \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"i\\\", \\\"TI\\\"], \
+\\\",\\\", StyleBox[\\\"j\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]\\). \
+\\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", RowBox[{StyleBox[\\\"expr\
+\\\", \\\"TI\\\"], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \
+\\\"TI\\\"], StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\",\\\", \
+SubscriptBox[StyleBox[\\\"j\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
+\\\"TR\\\"]], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\
+\"}], \\\"\[Rule]\\\", SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], \
+StyleBox[\\\"1\\\", \\\"TR\\\"]]}], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \
+\\\"TR\\\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) replaces parts at positions \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\
+\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"j\
+\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]\\) by \
+\\!\\(\\*SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \
+\\\"TI\\\"]]\\). \\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
+\\\"TR\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"j\\\", \\\"TI\\\"], \
+StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\
+\"TR\\\"]}], \\\"}\\\"}], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \
+\\\"TR\\\"]}], \\\"}\\\"}], \\\"\[Rule]\\\", StyleBox[\\\"new\\\", \
+\\\"TI\\\"]}]}], \\\"]\\\"}]\\) replaces all parts at positions \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\
+\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"j\
+\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", StyleBox[\\\"\
+\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]\\) by \\!\\(\\*StyleBox[\\\"new\\\
+\", \\\"TI\\\"]\\). \\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", \
+StyleBox[RowBox[{\\\"i\\\", StyleBox[\\\"\[Rule]\\\", FontSlant -> \
+\\\"Plain\\\"], \\\"new\\\"}], \\\"TI\\\"], \\\"]\\\"}]\\) represents an \
+operator form of ReplacePart that can be applied to an expression.\"\>", 
+             "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[<|
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "\!\(\*RowBox[{\"ReplacePart\", \"[\", RowBox[{StyleBox[\"expr\", \
+\"TI\"], \",\", RowBox[{StyleBox[\"i\", \"TI\"], \"\[Rule]\", \
+StyleBox[\"new\", \"TI\"]}]}], \"]\"}]\) yields an expression in which the \!\
+\(\*StyleBox[RowBox[{StyleBox[\"i\", \"TI\"], \
+\"\[Null]\"}]]\)\!\(\*SuperscriptBox[\"\[Null]\", \"th\"]\) part of \
+\!\(\*StyleBox[\"expr\", \"TI\"]\) is replaced by \!\(\*StyleBox[\"new\", \
+\"TI\"]\). \n\!\(\*RowBox[{\"ReplacePart\", \"[\", RowBox[{StyleBox[\"expr\", \
+\"TI\"], \",\", RowBox[{\"{\", RowBox[{RowBox[{SubscriptBox[StyleBox[\"i\", \
+\"TI\"], StyleBox[\"1\", \"TR\"]], \"\[Rule]\", \
+SubscriptBox[StyleBox[\"new\", \"TI\"], StyleBox[\"1\", \"TR\"]]}], \",\", \
+RowBox[{SubscriptBox[StyleBox[\"i\", \"TI\"], StyleBox[\"2\", \"TR\"]], \"\
+\[Rule]\", SubscriptBox[StyleBox[\"new\", \"TI\"], StyleBox[\"2\", \
+\"TR\"]]}], \",\", StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]}], \"]\"}]\) \
+replaces parts at positions \!\(\*SubscriptBox[StyleBox[\"i\", \"TI\"], \
+StyleBox[\"n\", \"TI\"]]\) by \!\(\*SubscriptBox[StyleBox[\"new\", \"TI\"], \
+StyleBox[\"n\", \"TI\"]]\). \n\!\(\*RowBox[{\"ReplacePart\", \"[\", \
+RowBox[{StyleBox[\"expr\", \"TI\"], \",\", RowBox[{RowBox[{\"{\", \
+RowBox[{StyleBox[\"i\", \"TI\"], \",\", StyleBox[\"j\", \"TI\"], \",\", \
+StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}], \"\[Rule]\", StyleBox[\"new\", \
+\"TI\"]}]}], \"]\"}]\) replaces the part at position \!\(\*RowBox[{\"{\", \
+RowBox[{StyleBox[\"i\", \"TI\"], \",\", StyleBox[\"j\", \"TI\"], \",\", \
+StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]\). \n\!\(\*RowBox[{\"ReplacePart\
+\", \"[\", RowBox[{StyleBox[\"expr\", \"TI\"], \",\", RowBox[{\"{\", \
+RowBox[{RowBox[{RowBox[{\"{\", RowBox[{SubscriptBox[StyleBox[\"i\", \"TI\"], \
+StyleBox[\"1\", \"TR\"]], \",\", SubscriptBox[StyleBox[\"j\", \"TI\"], \
+StyleBox[\"1\", \"TR\"]], \",\", StyleBox[\"\[Ellipsis]\", \"TR\"]}], \
+\"}\"}], \"\[Rule]\", SubscriptBox[StyleBox[\"new\", \"TI\"], StyleBox[\"1\", \
+\"TR\"]]}], \",\", StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]}], \"]\"}]\) \
+replaces parts at positions \!\(\*RowBox[{\"{\", \
+RowBox[{SubscriptBox[StyleBox[\"i\", \"TI\"], StyleBox[\"n\", \"TI\"]], \
+\",\", SubscriptBox[StyleBox[\"j\", \"TI\"], StyleBox[\"n\", \"TI\"]], \",\", \
+StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]\) by \
+\!\(\*SubscriptBox[StyleBox[\"new\", \"TI\"], StyleBox[\"n\", \"TI\"]]\). \n\
+\!\(\*RowBox[{\"ReplacePart\", \"[\", RowBox[{StyleBox[\"expr\", \"TI\"], \",\
+\", RowBox[{RowBox[{\"{\", RowBox[{RowBox[{\"{\", \
+RowBox[{SubscriptBox[StyleBox[\"i\", \"TI\"], StyleBox[\"1\", \"TR\"]], \
+\",\", SubscriptBox[StyleBox[\"j\", \"TI\"], StyleBox[\"1\", \"TR\"]], \",\", \
+StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}], \",\", \
+StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}], \"\[Rule]\", StyleBox[\"new\", \
+\"TI\"]}]}], \"]\"}]\) replaces all parts at positions \!\(\*RowBox[{\"{\", \
+RowBox[{SubscriptBox[StyleBox[\"i\", \"TI\"], StyleBox[\"n\", \"TI\"]], \
+\",\", SubscriptBox[StyleBox[\"j\", \"TI\"], StyleBox[\"n\", \"TI\"]], \",\", \
+StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]\) by \!\(\*StyleBox[\"new\", \
+\"TI\"]\). \n\!\(\*RowBox[{\"ReplacePart\", \"[\", StyleBox[RowBox[{\"i\", \
+StyleBox[\"\[Rule]\", FontSlant -> \"Plain\"], \"new\"}], \"TI\"], \"]\"}]\) \
+represents an operator form of ReplacePart that can be applied to an \
+expression.", 
+    "Documentation" -> <|
+     "Local" -> "paclet:ref/ReplacePart", "Web" -> 
+      "http://reference.wolfram.com/language/ref/ReplacePart.html"|>, 
+    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> None, 
+    "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
+    "FormatValues" -> None, "Options" -> {Heads -> Automatic}, 
+    "Attributes" -> {Protected}, "FullName" -> "System`ReplacePart"|>, 
+   True]]], "Output",
+ CellChangeTimes->{3.954997402097671*^9},
+ CellLabel->"Out[60]=",ExpressionUUID->"2e1fc4dc-c403-40d6-8ee8-c4c0d5245655"]
+}, Open  ]]
+},
+WindowSize->{976.5, 527.25},
+WindowMargins->{{-2.25, Automatic}, {46.5, -22.5}},
+FrontEndVersion->"14.2 for Linux x86 (64-bit) (December 26, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"6cc38d1c-da06-4cdf-9de3-292a82240b68"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 1110, 29, 30, "Input",ExpressionUUID->"29e76fa6-d13f-4814-87fb-b25f304288d2"],
+Cell[1689, 53, 940, 28, 33, "Output",ExpressionUUID->"57769978-1356-400d-840f-16b1c150571d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2666, 86, 7829, 176, 554, "Input",ExpressionUUID->"bd777548-d258-4cc1-9306-17bf92059362"],
+Cell[10498, 264, 822, 22, 33, "Output",ExpressionUUID->"0cb43154-5e30-4e7a-8cee-756423545b8b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11357, 291, 207, 3, 29, "Input",ExpressionUUID->"575fa192-e410-4b4b-be95-54733b1b5f83"],
+Cell[11567, 296, 24289, 475, 315, "Output",ExpressionUUID->"2e1fc4dc-c403-40d6-8ee8-c4c0d5245655"]
+}, Open  ]]
+}
+]
+*)
+
