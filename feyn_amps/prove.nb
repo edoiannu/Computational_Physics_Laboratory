@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     36807,        799]
-NotebookOptionsPosition[     35872,        774]
-NotebookOutlinePosition[     36272,        790]
-CellTagsIndexPosition[     36229,        787]
+NotebookDataLength[     37793,        908]
+NotebookOptionsPosition[     36401,        875]
+NotebookOutlinePosition[     36806,        891]
+CellTagsIndexPosition[     36763,        888]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -49,7 +49,7 @@ Cell[BoxData[
   3.95499594643225*^9, {3.954996349737661*^9, 3.954996362965455*^9}, {
    3.9549965148337793`*^9, 3.9549965189315157`*^9}, {3.954996549913043*^9, 
    3.954996552004483*^9}, {3.9549981552695208`*^9, 3.954998169510976*^9}},
- CellLabel->"In[69]:=",ExpressionUUID->"29e76fa6-d13f-4814-87fb-b25f304288d2"],
+ CellLabel->"In[72]:=",ExpressionUUID->"29e76fa6-d13f-4814-87fb-b25f304288d2"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -78,8 +78,8 @@ Cell[BoxData[
  CellChangeTimes->{
   3.954995947957836*^9, {3.954996355968627*^9, 3.954996368446002*^9}, 
    3.954996519553029*^9, 3.954996552371573*^9, 3.954996872967166*^9, 
-   3.954998172835*^9},
- CellLabel->"Out[69]=",ExpressionUUID->"57769978-1356-400d-840f-16b1c150571d"]
+   3.954998172835*^9, 3.955007340555182*^9, 3.955010765138433*^9},
+ CellLabel->"Out[72]=",ExpressionUUID->"3f44cecd-01de-4084-81d5-fc78627431d4"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -116,7 +116,8 @@ Cell[BoxData[
      RowBox[{"Module", "[", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"temp", ",", " ", "pippo"}], "}"}], " ", 
+        RowBox[{"temp", ",", " ", "pippo", ",", " ", "nuoviindici"}], "}"}], 
+       " ", 
        RowBox[{"(*", 
         RowBox[{"'", 
          RowBox[{"pippo", "'"}], " ", "\[EGrave]", " ", "un", " ", 
@@ -166,9 +167,7 @@ Cell[BoxData[
               RowBox[{
               "esima", " ", "aggiungendo", " ", "un", " ", "punto", " ", 
                "int", " ", "al", " ", "suo", " ", "interno"}]}], "*)"}], 
-            "]"}], ",", "\[IndentingNewLine]", 
-           RowBox[{"{", 
-            RowBox[{"1", ",", "pos"}], "}"}]}], "]"}]}], ";", " ", 
+            "]"}], ",", "\[IndentingNewLine]", "pos"}], "]"}]}], ";", " ", 
         RowBox[{"(*", 
          RowBox[{
           RowBox[{"sostituisco", " ", 
@@ -189,65 +188,198 @@ Cell[BoxData[
           RowBox[{"{", 
            RowBox[{"pippo", "->", "Sequence"}], "}"}]}]}], ";", 
         "\[IndentingNewLine]", 
+        RowBox[{"temp", " ", "=", " ", 
+         RowBox[{"{", "temp", "}"}]}], ";", " ", 
+        RowBox[{"(*", 
+         RowBox[{
+         "aggiungo", " ", "un", " ", "livello", " ", "di", " ", "parentesi"}],
+          "*)"}], "\[IndentingNewLine]", 
         RowBox[{"Clear", "[", "pippo", "]"}], ";", "\[IndentingNewLine]", 
         RowBox[{"(*", 
          RowBox[{
-         "aggiunta", " ", "di", " ", "un", " ", "indice", " ", "di", " ", 
-          "Lorentz"}], "*)"}], "\[IndentingNewLine]", 
-        RowBox[{"temp", " ", "=", " ", 
-         RowBox[{"ReplacePart", "[", 
+         "aggiunta", " ", "degli", " ", "indici", " ", "di", " ", "Lorentz", " ",
+           "e", " ", "di", " ", "colore", " ", "per", " ", "le", " ", 
+          "particelle", " ", "esterne"}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"nuoviindici", " ", "=", " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"mu", "[", "ext", "]"}], ",", " ", 
+           RowBox[{"mu", "[", 
+            RowBox[{"grafo", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", " ", "pos", ",", " ", "2"}], "]"}], "]"}], 
+            "]"}], ",", " ", 
+           RowBox[{"mu", "[", "int", "]"}]}], "}"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"pippo", " ", "=", " ", 
+         RowBox[{"Join", "[", 
           RowBox[{
            RowBox[{"grafo", "[", 
-            RowBox[{"[", "2", "]"}], "]"}], ",", "\[IndentingNewLine]", 
-           RowBox[{"pippo", "[", " ", 
-            RowBox[{
-             RowBox[{"{", 
-              RowBox[{"ext", ",", "int"}], "}"}], 
-             RowBox[{"(*", 
-              RowBox[{
-              "punto", " ", "esterno", " ", "che", " ", "si", " ", "attacca", 
-               " ", "al", " ", "nuovo", " ", "vertice"}], "*)"}], " ", ",", 
-             " ", 
-             RowBox[{"{", 
-              RowBox[{
-               RowBox[{"grafo", "[", 
-                RowBox[{"[", 
-                 RowBox[{"1", ",", "pos", ",", "1"}], "]"}], "]"}], ",", 
-               "int"}], "}"}], " ", ",", " ", 
-             RowBox[{"{", 
-              RowBox[{
-               RowBox[{"grafo", "[", 
-                RowBox[{"[", 
-                 RowBox[{"1", ",", "pos", ",", "2"}], "]"}], "]"}], ",", 
-               "int"}], "}"}]}], " ", 
-            RowBox[{"(*", 
-             RowBox[{
-              RowBox[{
-              "divide", " ", "in", " ", "due", " ", "la", " ", "linea", " ", 
-               "esterna", " ", "pos"}], "-", 
-              RowBox[{
-              "esima", " ", "aggiungendo", " ", "un", " ", "punto", " ", 
-               "int", " ", "al", " ", "suo", " ", "interno"}]}], "*)"}], 
-            "]"}], ",", "\[IndentingNewLine]", "2"}], "]"}]}], ";", " ", 
-        RowBox[{"(*", 
-         RowBox[{
-          RowBox[{"sostituisco", " ", 
-           RowBox[{"l", "'"}], "elemento", " ", "pos"}], "-", "esimo"}], 
-         "*)"}], "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{
-         "Sequence", " ", "\[EGrave]", " ", "una", " ", "funzione", " ", 
-          "speciale", " ", "che", " ", "spacchetta", " ", "gli", " ", 
-          "argomenti", " ", "di", " ", "pippo", " ", "nella", " ", "lista", " ",
-           "in", " ", "cui", " ", "si", " ", "trova"}], "*)"}], 
+            RowBox[{"[", "2", "]"}], "]"}], ",", " ", "nuoviindici"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"temp", " ", "=", " ", 
+         RowBox[{"Append", "[", 
+          RowBox[{"temp", ",", " ", "pippo"}], "]"}]}], ";", 
         "\[IndentingNewLine]", 
-        RowBox[{"Return", "[", "temp", "]"}]}]}], " ", 
+        RowBox[{"Clear", "[", "pippo", "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Clear", "[", "nuoviindici", "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"nuoviindici", " ", "=", " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"c", "[", "ext", "]"}], ",", " ", 
+           RowBox[{"c", "[", 
+            RowBox[{"grafo", "[", 
+             RowBox[{"[", 
+              RowBox[{"1", ",", " ", "pos", ",", " ", "2"}], "]"}], "]"}], 
+            "]"}], ",", " ", 
+           RowBox[{"c", "[", "int", "]"}]}], "}"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"pippo", " ", "=", " ", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"grafo", "[", 
+            RowBox[{"[", "3", "]"}], "]"}], ",", " ", "nuoviindici"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"temp", " ", "=", " ", 
+         RowBox[{"Append", "[", 
+          RowBox[{"temp", ",", " ", "pippo"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "aggiunta", " ", "degli", " ", "indici", " ", "di", " ", "Lorentz", " ",
+           "e", " ", "di", " ", "colore", " ", "per", " ", "le", " ", 
+          "particelle", " ", "interne"}], "*)"}], "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"Return", "[", "temp", "]"}]}]}], 
       RowBox[{"(*", 
        RowBox[{"ritorna", " ", "il", " ", "grafo", " ", "modificato"}], 
-       "*)"}], "\[IndentingNewLine]", "]"}]}], ";"}], " ", "\[IndentingNewLine]", 
-   RowBox[{"inserisci3", "[", 
-    RowBox[{"1", ",", " ", "4", ",", " ", 
-     RowBox[{"-", "2"}], ",", " ", "grafobase"}], "]"}]}]}]], "Input",
+       "*)"}], "\[IndentingNewLine]", "]"}]}], ";"}], " ", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"inserzione3", "[", "grafo_", "]"}], " ", ":=", " ", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "nuovigrafi", ",", " ", "indici", ",", " ", "npt", ",", " ", 
+         "nvert"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"indici", " ", "=", " ", 
+         RowBox[{"Flatten", "[", 
+          RowBox[{"grafo", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";", " ", 
+        RowBox[{"(*", 
+         RowBox[{
+         "comando", " ", "che", " ", "rimuove", " ", "un", " ", "livello", " ",
+           "di", " ", "parentesi"}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"npt", " ", "=", " ", 
+         RowBox[{"Max", "[", "indici", "]"}]}], ";", " ", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"'", 
+           RowBox[{"indici", "'"}], " ", "\[EGrave]", " ", "una", " ", 
+           "lista", " ", "di", " ", "liste"}], ",", " ", 
+          RowBox[{"'", 
+           RowBox[{"npt", "'"}], " ", "\[EGrave]", " ", "una", " ", "lista", " ",
+            "che", " ", "contiene", " ", 
+           RowBox[{"l", "'"}], "elemento", " ", "pi\[UGrave]", " ", "grande", 
+           " ", "di", "\[IndentingNewLine]", "ciascuna", " ", "lista"}]}], 
+         "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"nvert", " ", "=", " ", 
+         RowBox[{"Min", "[", "indici", "]"}]}], ";", " ", 
+        RowBox[{"(*", 
+         RowBox[{
+         "analogamente", " ", "a", " ", "npt", " ", "ma", " ", "con", " ", 
+          "gli", " ", "elementi", " ", "minori"}], "*)"}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"su", " ", "quale", " ", "segmento", " ", "agire"}], ",", 
+          " ", 
+          RowBox[{
+          "inserisci", " ", "un", " ", "punto", " ", "esterno", " ", "un", " ",
+            "vertice", " ", 
+           RowBox[{"sull", "'"}], "elemento", " ", "grafo", " ", "tutto", " ",
+            "questo", " ", "per", " ", "ciascun", " ", "segmento", " ", "del",
+            " ", "mio", " ", "grafo"}]}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"nuovigrafi", " ", "=", " ", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"inserisci3", "[", 
+            RowBox[{"i", ",", " ", 
+             RowBox[{"npt", " ", "+", " ", "1"}], ",", " ", 
+             RowBox[{"nvert", " ", "-", "1"}], ",", " ", "grafo"}], "]"}], ",",
+            " ", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", " ", "1", ",", "  ", 
+             RowBox[{"Length", "[", 
+              RowBox[{"grafo", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}]}], 
+          "\[IndentingNewLine]", "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "Lenght", " ", "conta", " ", "le", " ", "coppie", " ", "presenti", " ",
+           "nel", " ", "grafo", " ", 
+          RowBox[{"(", 
+           RowBox[{
+           "il", " ", "numero", " ", "delle", " ", "linee", " ", "interne"}], 
+           ")"}]}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{"Return", "[", "nuovigrafi", "]"}]}]}], "\[IndentingNewLine]",
+       "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"inserisci4", "[", 
+      RowBox[{"vertice_", ",", "ext_", ",", "grafo_"}], "]"}], ":=", 
+     RowBox[{"If", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Count", "[", 
+         RowBox[{
+          RowBox[{"grafo", "[", 
+           RowBox[{"[", "1", "]"}], "]"}], ",", "vertice", ",", "2"}], "]"}], 
+        "===", "3"}], ",", " ", 
+       RowBox[{"(*", 
+        RowBox[{"Count", " ", "cerca", " ", "un", " ", "pattern", " ", 
+         RowBox[{"(", 
+          RowBox[{"il", " ", "vertice"}], ")"}], " ", 
+         RowBox[{"all", "'"}], "interno", " ", "del", " ", "grafo", " ", "al",
+          " ", "livello", " ", "2", " ", "di", " ", "parentesi", " ", "e", " ",
+          "restituisce", " ", "quante", " ", "volte", " ", "appare"}], "*)"}],
+        "\[IndentingNewLine]", 
+       RowBox[{"Append", "[", 
+        RowBox[{
+         RowBox[{"grafo", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"ext", ",", "vertice"}], "}"}]}], "]"}], ",", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"Se", " ", 
+          RowBox[{"e", "'"}], " ", "verificato", " ", "la", " ", 
+          "condizione"}], ",", " ", 
+         RowBox[{"ovvero", " ", "che", " ", "vertice", " ", 
+          RowBox[{"e", "'"}], " ", "un", " ", "vertice", " ", "a", " ", "3"}],
+          ",", " ", 
+         RowBox[{
+         "allora", " ", "aggiungo", " ", "la", " ", "nuova", " ", "linea", " ",
+           "e", " ", "collega", " ", "il", " ", "vertice", " ", "al", " ", 
+          "punto", " ", "nuovo", " ", "ext"}]}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", "}"}]}], 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"altrimenti", " ", "non", " ", "fare", " ", "nulla"}], ",", 
+        " ", 
+        RowBox[{
+        "restituisci", " ", "una", " ", "lista", " ", "vuota", " ", "che", " ",
+          "alla", " ", "fine", " ", "butter\[OGrave]", " ", "via"}]}], "*)"}],
+       "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"inserisci4", "[", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", " ", "2", ",", " ", "grafobase"}], 
+    "]"}]}]}]], "Input",
  CellChangeTimes->{{3.954995952439392*^9, 3.954995971354087*^9}, 
    3.954996050975075*^9, {3.954996645075749*^9, 3.954996663286968*^9}, {
    3.954996770947275*^9, 3.954996888474732*^9}, {3.9549969842570333`*^9, 
@@ -258,41 +390,154 @@ Cell[BoxData[
    3.954997816795987*^9}, {3.9549979017548857`*^9, 3.954997901857203*^9}, {
    3.954997942566972*^9, 3.954997951228788*^9}, {3.954997989929064*^9, 
    3.9549980569983664`*^9}, {3.954998119714369*^9, 3.9549981198032846`*^9}, {
-   3.954998197676137*^9, 
-   3.9549982091726503`*^9}},ExpressionUUID->"bd777548-d258-4cc1-9306-\
-17bf92059362"],
+   3.954998197676137*^9, 3.9549982091726503`*^9}, {3.9550071746823807`*^9, 
+   3.955007178756304*^9}, {3.955007245195155*^9, 3.955007394700067*^9}, {
+   3.955007573295539*^9, 3.9550075938019047`*^9}, {3.9550076374771767`*^9, 
+   3.955007641331373*^9}, {3.9550079056900997`*^9, 3.955007975464048*^9}, {
+   3.955008033514408*^9, 3.9550080887394238`*^9}, {3.955008151322467*^9, 
+   3.955008200301819*^9}, {3.95500826042245*^9, 3.955008274698956*^9}, {
+   3.955008345324119*^9, 3.95500836995895*^9}, {3.955008409842664*^9, 
+   3.9550084232345963`*^9}, {3.955008481738102*^9, 3.955008523920662*^9}, {
+   3.9550085744799147`*^9, 3.955008589233358*^9}, {3.9550104936349897`*^9, 
+   3.9550105290416594`*^9}, {3.955010560433612*^9, 3.955010688598473*^9}, {
+   3.9550107251952963`*^9, 3.955010751032189*^9}, {3.955010815966226*^9, 
+   3.95501083961449*^9}, {3.955010937487496*^9, 3.955010954349876*^9}, {
+   3.955011122826968*^9, 3.955011123007165*^9}, {3.9550111784169083`*^9, 
+   3.95501119624856*^9}, {3.955011304501711*^9, 3.955011368215086*^9}, 
+   3.9550118117112637`*^9, {3.955011844375614*^9, 3.9550118489071608`*^9}, {
+   3.955011927902416*^9, 3.955011948660018*^9}, {3.955012397791424*^9, 
+   3.9550124158248034`*^9}, {3.955012459572771*^9, 3.9550125000549793`*^9}},
+ CellLabel->
+  "In[100]:=",ExpressionUUID->"bd777548-d258-4cc1-9306-17bf92059362"],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{
-   RowBox[{"mu", "[", 
-    RowBox[{"pippo$29650", "[", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"4", ",", 
-        RowBox[{"-", "2"}]}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"1", ",", 
-        RowBox[{"-", "2"}]}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"-", "1"}], ",", 
-        RowBox[{"-", "2"}]}], "}"}]}], "]"}], "]"}], ",", 
-   RowBox[{"mu", "[", "2", "]"}], ",", 
-   RowBox[{"mu", "[", "3", "]"}]}], "}"}]], "Output",
+   RowBox[{"{", 
+    RowBox[{"1", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", 
+     RowBox[{"-", "1"}]}], "}"}]}], "}"}]], "Output",
  CellChangeTimes->{
   3.954996813557536*^9, {3.954996844346457*^9, 3.954996888926586*^9}, 
    3.954997044147397*^9, 3.954997598812125*^9, 3.9549976318887997`*^9, 
-   3.954997817866647*^9, 3.9549979024975033`*^9, 3.9549981758428*^9},
- CellLabel->"Out[71]=",ExpressionUUID->"0cb43154-5e30-4e7a-8cee-756423545b8b"]
+   3.954997817866647*^9, 3.9549979024975033`*^9, 3.9549981758428*^9, {
+   3.955007342507872*^9, 3.955007395550681*^9}, 3.955007443563078*^9, 
+   3.955007508369565*^9, {3.9550075746223383`*^9, 3.955007594382483*^9}, 
+   3.955007642028091*^9, 3.955007977476973*^9, 3.955008202026452*^9, {
+   3.9550083485232563`*^9, 3.955008371571398*^9}, 3.955008525140216*^9, 
+   3.9550106899914703`*^9, {3.955010741637725*^9, 3.955010770857081*^9}, 
+   3.9550108406777563`*^9, {3.955010955682171*^9, 3.955010959762945*^9}, 
+   3.955011037725389*^9, 3.955011124296056*^9, 3.955011197237197*^9, {
+   3.955011345170128*^9, 3.955011369155858*^9}, 3.95501195023569*^9, {
+   3.955012490076714*^9, 3.9550125011251917`*^9}},
+ CellLabel->
+  "Out[103]=",ExpressionUUID->"ba0d0e56-49d0-4195-a478-d29ce1e2a436"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"??", " ", "ReplacePart"}]], "Input",
- CellChangeTimes->{{3.954997399346076*^9, 3.9549974009156723`*^9}},
- CellLabel->"In[60]:=",ExpressionUUID->"575fa192-e410-4b4b-be95-54733b1b5f83"],
+ RowBox[{"appo", " ", "=", " ", 
+  RowBox[{"ReplacePart", "[", 
+   RowBox[{
+    RowBox[{"grafobase", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], ",", "\[IndentingNewLine]", 
+    RowBox[{"pippo", "[", " ", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"4", ",", 
+        RowBox[{"-", "2"}]}], "}"}], 
+      RowBox[{"(*", 
+       RowBox[{
+       "punto", " ", "esterno", " ", "che", " ", "si", " ", "attacca", " ", 
+        "al", " ", "nuovo", " ", "vertice"}], "*)"}], " ", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"grafobase", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "1", ",", "1"}], "]"}], "]"}], ",", 
+        RowBox[{"-", "2"}]}], "}"}], " ", ",", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"grafobase", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "1", ",", "2"}], "]"}], "]"}], ",", 
+        RowBox[{"-", "2"}]}], "}"}]}], " ", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{
+       "divide", " ", "in", " ", "due", " ", "la", " ", "linea", " ", 
+        "esterna", " ", "pos"}], "-", 
+       RowBox[{
+       "esima", " ", "aggiungendo", " ", "un", " ", "punto", " ", "int", " ", 
+        "al", " ", "suo", " ", "interno"}]}], "*)"}], "]"}], ",", 
+    "\[IndentingNewLine]", "1"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.954997399346076*^9, 3.9549974009156723`*^9}, {
+  3.955007603631825*^9, 3.955007663562087*^9}, {3.955007736776037*^9, 
+  3.955007875235668*^9}},
+ CellLabel->"In[40]:=",ExpressionUUID->"575fa192-e410-4b4b-be95-54733b1b5f83"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"pippo", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"4", ",", 
+       RowBox[{"-", "2"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", 
+       RowBox[{"-", "2"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", "1"}], ",", 
+       RowBox[{"-", "2"}]}], "}"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", 
+     RowBox[{"-", "1"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.955007775134487*^9, 3.95500787653021*^9}},
+ CellLabel->"Out[40]=",ExpressionUUID->"747e90ce-da11-4aaf-81e4-f01b4dcb6165"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"lista", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"lista", " ", "=", " ", 
+  RowBox[{"Append", "[", 
+   RowBox[{"lista", ",", " ", "4"}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.955007213023356*^9, 3.9550072337894363`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"9947a41c-55ee-4d9b-b204-69d5d3088d5e"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", "2", ",", "3", ",", "4"}], "}"}]], "Output",
+ CellChangeTimes->{3.9550072356105957`*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"b53a7ec2-e8b0-4907-ba45-1f704b7627b0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"??", " ", "If"}]], "Input",
+ CellChangeTimes->{{3.9550087331108932`*^9, 3.9550087358550386`*^9}, {
+  3.955009182854841*^9, 3.955009185822826*^9}},
+ CellLabel->"In[65]:=",ExpressionUUID->"e2ad1f13-e99b-4c9c-9026-4e96d8d21587"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -334,9 +579,9 @@ Cell[BoxData[
                 CurrentValue["MouseOver"]]],
               Appearance->None,
               BaseStyle->"Link",
-              ButtonData->"paclet:ref/ReplacePart",
-              ButtonNote->"paclet:ref/ReplacePart"],
-             "\"paclet:ref/ReplacePart\""],
+              ButtonData->"paclet:ref/If",
+              ButtonNote->"paclet:ref/If"],
+             "\"paclet:ref/If\""],
             FrameMargins->{{0, 4}, {0, 2}}],
            BaseStyle->"InformationTitleBackground",
            StripOnInput->False]},
@@ -344,67 +589,19 @@ Cell[BoxData[
           ItemBox[
            PaneBox[
             
-            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", \
-RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", RowBox[{StyleBox[\\\"i\
-\\\", \\\"TI\\\"], \\\"\[Rule]\\\", StyleBox[\\\"new\\\", \\\"TI\\\"]}]}], \\\
-\"]\\\"}]\\) yields an expression in which the \
-\\!\\(\\*StyleBox[RowBox[{StyleBox[\\\"i\\\", \\\"TI\\\"], \\\"\[Null]\\\"}]]\
-\\)\\!\\(\\*SuperscriptBox[\\\"\[Null]\\\", \\\"th\\\"]\\) part of \
-\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) is replaced by \
-\\!\\(\\*StyleBox[\\\"new\\\", \\\"TI\\\"]\\). \
-\\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", RowBox[{StyleBox[\\\"expr\
-\\\", \\\"TI\\\"], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\"], \
-StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"\[Rule]\\\", \
-SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
-\\\"TR\\\"]]}], \\\",\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \
-\\\"TI\\\"], StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"\[Rule]\\\", \
-SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], StyleBox[\\\"2\\\", \
-\\\"TR\\\"]]}], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\
-\\\"}]}], \\\"]\\\"}]\\) replaces parts at positions \
-\\!\\(\\*SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \\\
-\"TI\\\"]]\\) by \\!\\(\\*SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], \
-StyleBox[\\\"n\\\", \\\"TI\\\"]]\\). \\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \
-\\\"[\\\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"i\\\", \\\"TI\\\"], \
-\\\",\\\", StyleBox[\\\"j\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"\
-\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}], \\\"\[Rule]\\\", \
-StyleBox[\\\"new\\\", \\\"TI\\\"]}]}], \\\"]\\\"}]\\) replaces the part at \
-position \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"i\\\", \\\"TI\\\"], \
-\\\",\\\", StyleBox[\\\"j\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"\
-\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]\\). \
-\\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", RowBox[{StyleBox[\\\"expr\
-\\\", \\\"TI\\\"], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \
-\\\"TI\\\"], StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\",\\\", \
-SubscriptBox[StyleBox[\\\"j\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
-\\\"TR\\\"]], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\
-\"}], \\\"\[Rule]\\\", SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], \
-StyleBox[\\\"1\\\", \\\"TR\\\"]]}], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \
-\\\"TR\\\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) replaces parts at positions \
-\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\
-\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"j\
-\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", StyleBox[\\\"\
-\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]\\) by \
-\\!\\(\\*SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \
-\\\"TI\\\"]]\\). \\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", \
-RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
-\\\"TR\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"j\\\", \\\"TI\\\"], \
-StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\
-\"TR\\\"]}], \\\"}\\\"}], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \
-\\\"TR\\\"]}], \\\"}\\\"}], \\\"\[Rule]\\\", StyleBox[\\\"new\\\", \
-\\\"TI\\\"]}]}], \\\"]\\\"}]\\) replaces all parts at positions \
-\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\
-\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"j\
-\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", StyleBox[\\\"\
-\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]\\) by \\!\\(\\*StyleBox[\\\"new\\\
-\", \\\"TI\\\"]\\). \\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", \
-StyleBox[RowBox[{\\\"i\\\", StyleBox[\\\"\[Rule]\\\", FontSlant -> \
-\\\"Plain\\\"], \\\"new\\\"}], \\\"TI\\\"], \\\"]\\\"}]\\) represents an \
-operator form of ReplacePart that can be applied to an expression.\"\>", 
-             "InformationUsageText",
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"If\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"condition\\\", \\\"TI\\\"], \\\",\\\", \
+StyleBox[\\\"t\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"f\\\", \
+\\\"TI\\\"]}], \\\"]\\\"}]\\) gives \\!\\(\\*StyleBox[\\\"t\\\", \
+\\\"TI\\\"]\\) if \\!\\(\\*StyleBox[\\\"condition\\\", \\\"TI\\\"]\\) \
+evaluates to True, and \\!\\(\\*StyleBox[\\\"f\\\", \\\"TI\\\"]\\) if it \
+evaluates to False. \\n\\!\\(\\*RowBox[{\\\"If\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"condition\\\", \\\"TI\\\"], \\\",\\\", \
+StyleBox[\\\"t\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"f\\\", \\\"TI\\\"], \
+\\\",\\\", StyleBox[\\\"u\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) gives \
+\\!\\(\\*StyleBox[\\\"u\\\", \\\"TI\\\"]\\) if \
+\\!\\(\\*StyleBox[\\\"condition\\\", \\\"TI\\\"]\\) evaluates to neither True \
+nor False. \"\>", "InformationUsageText",
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
             FrameMargins->{{10, 10}, {8, 10}}],
@@ -431,8 +628,8 @@ operator form of ReplacePart that can be applied to an expression.\"\>",
                    TemplateBox[{
                     
                     TemplateBox[{
-                    "\"Local \[RightGuillemet]\"", "paclet:ref/ReplacePart", 
-                    "paclet:ref/ReplacePart", "Link", {
+                    "\"Local \[RightGuillemet]\"", "paclet:ref/If", 
+                    "paclet:ref/If", "Link", {
                     RGBColor[0.9686274509803922, 0.4666666666666667, 0.]}, 
                     BaseStyle -> {
                     RGBColor[0.0784313725490196, 0.1568627450980392, 0.6]}}, 
@@ -441,10 +638,9 @@ operator form of ReplacePart that can be applied to an expression.\"\>",
                     "\"|\"", "InformationRowLabel", StripOnInput -> False], 
                     "\"  \"", 
                     TemplateBox[{"\"Web \[RightGuillemet]\"", {
-                    URL[
-                    "http://reference.wolfram.com/language/ref/ReplacePart.\
-html"], None}, "http://reference.wolfram.com/language/ref/ReplacePart.html", 
-                    "Hyperlink", {
+                    URL["http://reference.wolfram.com/language/ref/If.html"], 
+                    None}, "http://reference.wolfram.com/language/ref/If.\
+html", "Hyperlink", {
                     RGBColor[0.9686274509803922, 0.4666666666666667, 0.]}, 
                     BaseStyle -> {
                     RGBColor[0.0784313725490196, 0.1568627450980392, 0.6]}}, 
@@ -453,21 +649,13 @@ html"], None}, "http://reference.wolfram.com/language/ref/ReplacePart.html",
                   {
                    TagBox[
                     TooltipBox[
-                    StyleBox["\<\" Options\"\>", "InformationRowLabel",
-                    StripOnInput->False],
-                    "\"Options\"",
-                    TooltipStyle->"TextStyling"],
-                    Annotation[#, "Options", "Tooltip"]& ], 
-                   RowBox[{"Heads", "\[Rule]", "Automatic"}]},
-                  {
-                   TagBox[
-                    TooltipBox[
                     StyleBox["\<\" Attributes\"\>", "InformationRowLabel",
                     StripOnInput->False],
                     "\"Attributes\"",
                     TooltipStyle->"TextStyling"],
                     Annotation[#, "Attributes", "Tooltip"]& ], 
-                   RowBox[{"{", "Protected", "}"}]},
+                   RowBox[{"{", 
+                    RowBox[{"HoldRest", ",", "Protected"}], "}"}]},
                   {
                    TagBox[
                     TooltipBox[
@@ -477,7 +665,7 @@ html"], None}, "http://reference.wolfram.com/language/ref/ReplacePart.html",
                     TooltipStyle->"TextStyling"],
                     
                     Annotation[#, "FullName", 
-                    "Tooltip"]& ], "\<\"System`ReplacePart\"\>"}
+                    "Tooltip"]& ], "\<\"System`If\"\>"}
                  },
                  AutoDelete->False,
                  GridBoxAlignment->{"Columns" -> {Right, Left}},
@@ -582,9 +770,9 @@ html"], None}, "http://reference.wolfram.com/language/ref/ReplacePart.html",
                 CurrentValue["MouseOver"]]],
               Appearance->None,
               BaseStyle->"Link",
-              ButtonData->"paclet:ref/ReplacePart",
-              ButtonNote->"paclet:ref/ReplacePart"],
-             "\"paclet:ref/ReplacePart\""],
+              ButtonData->"paclet:ref/If",
+              ButtonNote->"paclet:ref/If"],
+             "\"paclet:ref/If\""],
             FrameMargins->{{0, 4}, {0, 2}}],
            BaseStyle->"InformationTitleBackground",
            StripOnInput->False]},
@@ -592,67 +780,19 @@ html"], None}, "http://reference.wolfram.com/language/ref/ReplacePart.html",
           ItemBox[
            PaneBox[
             
-            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", \
-RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", RowBox[{StyleBox[\\\"i\
-\\\", \\\"TI\\\"], \\\"\[Rule]\\\", StyleBox[\\\"new\\\", \\\"TI\\\"]}]}], \\\
-\"]\\\"}]\\) yields an expression in which the \
-\\!\\(\\*StyleBox[RowBox[{StyleBox[\\\"i\\\", \\\"TI\\\"], \\\"\[Null]\\\"}]]\
-\\)\\!\\(\\*SuperscriptBox[\\\"\[Null]\\\", \\\"th\\\"]\\) part of \
-\\!\\(\\*StyleBox[\\\"expr\\\", \\\"TI\\\"]\\) is replaced by \
-\\!\\(\\*StyleBox[\\\"new\\\", \\\"TI\\\"]\\). \
-\\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", RowBox[{StyleBox[\\\"expr\
-\\\", \\\"TI\\\"], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\"], \
-StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\"\[Rule]\\\", \
-SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
-\\\"TR\\\"]]}], \\\",\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \
-\\\"TI\\\"], StyleBox[\\\"2\\\", \\\"TR\\\"]], \\\"\[Rule]\\\", \
-SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], StyleBox[\\\"2\\\", \
-\\\"TR\\\"]]}], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\
-\\\"}]}], \\\"]\\\"}]\\) replaces parts at positions \
-\\!\\(\\*SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \\\
-\"TI\\\"]]\\) by \\!\\(\\*SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], \
-StyleBox[\\\"n\\\", \\\"TI\\\"]]\\). \\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \
-\\\"[\\\", RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"i\\\", \\\"TI\\\"], \
-\\\",\\\", StyleBox[\\\"j\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"\
-\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}], \\\"\[Rule]\\\", \
-StyleBox[\\\"new\\\", \\\"TI\\\"]}]}], \\\"]\\\"}]\\) replaces the part at \
-position \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{StyleBox[\\\"i\\\", \\\"TI\\\"], \
-\\\",\\\", StyleBox[\\\"j\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"\
-\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]\\). \
-\\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", RowBox[{StyleBox[\\\"expr\
-\\\", \\\"TI\\\"], \\\",\\\", RowBox[{\\\"{\\\", \
-RowBox[{RowBox[{RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \
-\\\"TI\\\"], StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\",\\\", \
-SubscriptBox[StyleBox[\\\"j\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
-\\\"TR\\\"]], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\
-\"}], \\\"\[Rule]\\\", SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], \
-StyleBox[\\\"1\\\", \\\"TR\\\"]]}], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \
-\\\"TR\\\"]}], \\\"}\\\"}]}], \\\"]\\\"}]\\) replaces parts at positions \
-\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\
-\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"j\
-\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", StyleBox[\\\"\
-\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]\\) by \
-\\!\\(\\*SubscriptBox[StyleBox[\\\"new\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \
-\\\"TI\\\"]]\\). \\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", \
-RowBox[{StyleBox[\\\"expr\\\", \\\"TI\\\"], \\\",\\\", \
-RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
-RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\"], StyleBox[\\\"1\\\", \
-\\\"TR\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"j\\\", \\\"TI\\\"], \
-StyleBox[\\\"1\\\", \\\"TR\\\"]], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \\\
-\"TR\\\"]}], \\\"}\\\"}], \\\",\\\", StyleBox[\\\"\[Ellipsis]\\\", \
-\\\"TR\\\"]}], \\\"}\\\"}], \\\"\[Rule]\\\", StyleBox[\\\"new\\\", \
-\\\"TI\\\"]}]}], \\\"]\\\"}]\\) replaces all parts at positions \
-\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{SubscriptBox[StyleBox[\\\"i\\\", \\\"TI\\\
-\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", SubscriptBox[StyleBox[\\\"j\
-\\\", \\\"TI\\\"], StyleBox[\\\"n\\\", \\\"TI\\\"]], \\\",\\\", StyleBox[\\\"\
-\[Ellipsis]\\\", \\\"TR\\\"]}], \\\"}\\\"}]\\) by \\!\\(\\*StyleBox[\\\"new\\\
-\", \\\"TI\\\"]\\). \\n\\!\\(\\*RowBox[{\\\"ReplacePart\\\", \\\"[\\\", \
-StyleBox[RowBox[{\\\"i\\\", StyleBox[\\\"\[Rule]\\\", FontSlant -> \
-\\\"Plain\\\"], \\\"new\\\"}], \\\"TI\\\"], \\\"]\\\"}]\\) represents an \
-operator form of ReplacePart that can be applied to an expression.\"\>", 
-             "InformationUsageText",
+            StyleBox["\<\"\\!\\(\\*RowBox[{\\\"If\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"condition\\\", \\\"TI\\\"], \\\",\\\", \
+StyleBox[\\\"t\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"f\\\", \
+\\\"TI\\\"]}], \\\"]\\\"}]\\) gives \\!\\(\\*StyleBox[\\\"t\\\", \
+\\\"TI\\\"]\\) if \\!\\(\\*StyleBox[\\\"condition\\\", \\\"TI\\\"]\\) \
+evaluates to True, and \\!\\(\\*StyleBox[\\\"f\\\", \\\"TI\\\"]\\) if it \
+evaluates to False. \\n\\!\\(\\*RowBox[{\\\"If\\\", \\\"[\\\", \
+RowBox[{StyleBox[\\\"condition\\\", \\\"TI\\\"], \\\",\\\", \
+StyleBox[\\\"t\\\", \\\"TI\\\"], \\\",\\\", StyleBox[\\\"f\\\", \\\"TI\\\"], \
+\\\",\\\", StyleBox[\\\"u\\\", \\\"TI\\\"]}], \\\"]\\\"}]\\) gives \
+\\!\\(\\*StyleBox[\\\"u\\\", \\\"TI\\\"]\\) if \
+\\!\\(\\*StyleBox[\\\"condition\\\", \\\"TI\\\"]\\) evaluates to neither True \
+nor False. \"\>", "InformationUsageText",
              StripOnInput->False,
              LineSpacing->{1.5, 1.5, 3.}],
             FrameMargins->{{10, 10}, {8, 10}}],
@@ -713,67 +853,28 @@ operator form of ReplacePart that can be applied to an expression.\"\>",
    StripOnInput->False],
   InformationData[<|
    "ObjectType" -> "Symbol", "Usage" -> 
-    "\!\(\*RowBox[{\"ReplacePart\", \"[\", RowBox[{StyleBox[\"expr\", \
-\"TI\"], \",\", RowBox[{StyleBox[\"i\", \"TI\"], \"\[Rule]\", \
-StyleBox[\"new\", \"TI\"]}]}], \"]\"}]\) yields an expression in which the \!\
-\(\*StyleBox[RowBox[{StyleBox[\"i\", \"TI\"], \
-\"\[Null]\"}]]\)\!\(\*SuperscriptBox[\"\[Null]\", \"th\"]\) part of \
-\!\(\*StyleBox[\"expr\", \"TI\"]\) is replaced by \!\(\*StyleBox[\"new\", \
-\"TI\"]\). \n\!\(\*RowBox[{\"ReplacePart\", \"[\", RowBox[{StyleBox[\"expr\", \
-\"TI\"], \",\", RowBox[{\"{\", RowBox[{RowBox[{SubscriptBox[StyleBox[\"i\", \
-\"TI\"], StyleBox[\"1\", \"TR\"]], \"\[Rule]\", \
-SubscriptBox[StyleBox[\"new\", \"TI\"], StyleBox[\"1\", \"TR\"]]}], \",\", \
-RowBox[{SubscriptBox[StyleBox[\"i\", \"TI\"], StyleBox[\"2\", \"TR\"]], \"\
-\[Rule]\", SubscriptBox[StyleBox[\"new\", \"TI\"], StyleBox[\"2\", \
-\"TR\"]]}], \",\", StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]}], \"]\"}]\) \
-replaces parts at positions \!\(\*SubscriptBox[StyleBox[\"i\", \"TI\"], \
-StyleBox[\"n\", \"TI\"]]\) by \!\(\*SubscriptBox[StyleBox[\"new\", \"TI\"], \
-StyleBox[\"n\", \"TI\"]]\). \n\!\(\*RowBox[{\"ReplacePart\", \"[\", \
-RowBox[{StyleBox[\"expr\", \"TI\"], \",\", RowBox[{RowBox[{\"{\", \
-RowBox[{StyleBox[\"i\", \"TI\"], \",\", StyleBox[\"j\", \"TI\"], \",\", \
-StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}], \"\[Rule]\", StyleBox[\"new\", \
-\"TI\"]}]}], \"]\"}]\) replaces the part at position \!\(\*RowBox[{\"{\", \
-RowBox[{StyleBox[\"i\", \"TI\"], \",\", StyleBox[\"j\", \"TI\"], \",\", \
-StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]\). \n\!\(\*RowBox[{\"ReplacePart\
-\", \"[\", RowBox[{StyleBox[\"expr\", \"TI\"], \",\", RowBox[{\"{\", \
-RowBox[{RowBox[{RowBox[{\"{\", RowBox[{SubscriptBox[StyleBox[\"i\", \"TI\"], \
-StyleBox[\"1\", \"TR\"]], \",\", SubscriptBox[StyleBox[\"j\", \"TI\"], \
-StyleBox[\"1\", \"TR\"]], \",\", StyleBox[\"\[Ellipsis]\", \"TR\"]}], \
-\"}\"}], \"\[Rule]\", SubscriptBox[StyleBox[\"new\", \"TI\"], StyleBox[\"1\", \
-\"TR\"]]}], \",\", StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]}], \"]\"}]\) \
-replaces parts at positions \!\(\*RowBox[{\"{\", \
-RowBox[{SubscriptBox[StyleBox[\"i\", \"TI\"], StyleBox[\"n\", \"TI\"]], \
-\",\", SubscriptBox[StyleBox[\"j\", \"TI\"], StyleBox[\"n\", \"TI\"]], \",\", \
-StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]\) by \
-\!\(\*SubscriptBox[StyleBox[\"new\", \"TI\"], StyleBox[\"n\", \"TI\"]]\). \n\
-\!\(\*RowBox[{\"ReplacePart\", \"[\", RowBox[{StyleBox[\"expr\", \"TI\"], \",\
-\", RowBox[{RowBox[{\"{\", RowBox[{RowBox[{\"{\", \
-RowBox[{SubscriptBox[StyleBox[\"i\", \"TI\"], StyleBox[\"1\", \"TR\"]], \
-\",\", SubscriptBox[StyleBox[\"j\", \"TI\"], StyleBox[\"1\", \"TR\"]], \",\", \
-StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}], \",\", \
-StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}], \"\[Rule]\", StyleBox[\"new\", \
-\"TI\"]}]}], \"]\"}]\) replaces all parts at positions \!\(\*RowBox[{\"{\", \
-RowBox[{SubscriptBox[StyleBox[\"i\", \"TI\"], StyleBox[\"n\", \"TI\"]], \
-\",\", SubscriptBox[StyleBox[\"j\", \"TI\"], StyleBox[\"n\", \"TI\"]], \",\", \
-StyleBox[\"\[Ellipsis]\", \"TR\"]}], \"}\"}]\) by \!\(\*StyleBox[\"new\", \
-\"TI\"]\). \n\!\(\*RowBox[{\"ReplacePart\", \"[\", StyleBox[RowBox[{\"i\", \
-StyleBox[\"\[Rule]\", FontSlant -> \"Plain\"], \"new\"}], \"TI\"], \"]\"}]\) \
-represents an operator form of ReplacePart that can be applied to an \
-expression.", 
+    "\!\(\*RowBox[{\"If\", \"[\", RowBox[{StyleBox[\"condition\", \"TI\"], \
+\",\", StyleBox[\"t\", \"TI\"], \",\", StyleBox[\"f\", \"TI\"]}], \"]\"}]\) \
+gives \!\(\*StyleBox[\"t\", \"TI\"]\) if \!\(\*StyleBox[\"condition\", \
+\"TI\"]\) evaluates to True, and \!\(\*StyleBox[\"f\", \"TI\"]\) if it \
+evaluates to False. \n\!\(\*RowBox[{\"If\", \"[\", \
+RowBox[{StyleBox[\"condition\", \"TI\"], \",\", StyleBox[\"t\", \"TI\"], \
+\",\", StyleBox[\"f\", \"TI\"], \",\", StyleBox[\"u\", \"TI\"]}], \"]\"}]\) \
+gives \!\(\*StyleBox[\"u\", \"TI\"]\) if \!\(\*StyleBox[\"condition\", \
+\"TI\"]\) evaluates to neither True nor False. ", 
     "Documentation" -> <|
-     "Local" -> "paclet:ref/ReplacePart", "Web" -> 
-      "http://reference.wolfram.com/language/ref/ReplacePart.html"|>, 
-    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> None, 
-    "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
-    "FormatValues" -> None, "Options" -> {Heads -> Automatic}, 
-    "Attributes" -> {Protected}, "FullName" -> "System`ReplacePart"|>, 
-   True]]], "Output",
- CellChangeTimes->{3.954997402097671*^9},
- CellLabel->"Out[60]=",ExpressionUUID->"2e1fc4dc-c403-40d6-8ee8-c4c0d5245655"]
+     "Local" -> "paclet:ref/If", "Web" -> 
+      "http://reference.wolfram.com/language/ref/If.html"|>, "OwnValues" -> 
+    None, "UpValues" -> None, "DownValues" -> None, "SubValues" -> None, 
+    "DefaultValues" -> None, "NValues" -> None, "FormatValues" -> None, 
+    "Options" -> None, "Attributes" -> {HoldRest, Protected}, "FullName" -> 
+    "System`If"|>, True]]], "Output",
+ CellChangeTimes->{3.955008736848578*^9, 3.9550091878772306`*^9},
+ CellLabel->"Out[65]=",ExpressionUUID->"ba2d75c6-be1c-4c66-b579-8c7653014c55"]
 }, Open  ]]
 },
 WindowSize->{976.5, 527.25},
-WindowMargins->{{-2.25, Automatic}, {46.5, -22.5}},
+WindowMargins->{{-2.25, Automatic}, {Automatic, -22.5}},
 FrontEndVersion->"14.2 for Linux x86 (64-bit) (December 26, 2024)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"6cc38d1c-da06-4cdf-9de3-292a82240b68"
@@ -791,15 +892,23 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[576, 22, 1110, 29, 30, "Input",ExpressionUUID->"29e76fa6-d13f-4814-87fb-b25f304288d2"],
-Cell[1689, 53, 940, 28, 33, "Output",ExpressionUUID->"57769978-1356-400d-840f-16b1c150571d"]
+Cell[1689, 53, 984, 28, 33, "Output",ExpressionUUID->"3f44cecd-01de-4084-81d5-fc78627431d4"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[2666, 86, 7829, 176, 554, "Input",ExpressionUUID->"bd777548-d258-4cc1-9306-17bf92059362"],
-Cell[10498, 264, 822, 22, 33, "Output",ExpressionUUID->"0cb43154-5e30-4e7a-8cee-756423545b8b"]
+Cell[2710, 86, 14841, 324, 1161, "Input",ExpressionUUID->"bd777548-d258-4cc1-9306-17bf92059362"],
+Cell[17554, 412, 1320, 29, 77, "Output",ExpressionUUID->"ba0d0e56-49d0-4195-a478-d29ce1e2a436"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[11357, 291, 207, 3, 29, "Input",ExpressionUUID->"575fa192-e410-4b4b-be95-54733b1b5f83"],
-Cell[11567, 296, 24289, 475, 315, "Output",ExpressionUUID->"2e1fc4dc-c403-40d6-8ee8-c4c0d5245655"]
+Cell[18911, 446, 1537, 39, 117, "Input",ExpressionUUID->"575fa192-e410-4b4b-be95-54733b1b5f83"],
+Cell[20451, 487, 686, 22, 33, "Output",ExpressionUUID->"747e90ce-da11-4aaf-81e4-f01b4dcb6165"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21174, 514, 421, 10, 51, "Input",ExpressionUUID->"9947a41c-55ee-4d9b-b204-69d5d3088d5e"],
+Cell[21598, 526, 215, 4, 33, "Output",ExpressionUUID->"b53a7ec2-e8b0-4907-ba45-1f704b7627b0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21850, 535, 249, 4, 29, "Input",ExpressionUUID->"e2ad1f13-e99b-4c9c-9026-4e96d8d21587"],
+Cell[22102, 541, 14283, 331, 191, "Output",ExpressionUUID->"ba2d75c6-be1c-4c66-b579-8c7653014c55"]
 }, Open  ]]
 }
 ]
