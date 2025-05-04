@@ -1,6 +1,5 @@
 (* ::Package:: *)
 
-(*BeginPackage["`"]*)
 (*comando che aggiunge un vertice a 3 a una linea di un grafo
     pos_ : indice del segmento/coppia di numeri che voglio rimpiazzare
   ext_ : indice del punto esterno che voglio aggiungere
@@ -80,5 +79,3 @@ listagrafi = DeleteCases[listagrafi,{}];
 ];
 Return[listagrafi]
 ];
-
-(*EndPackage[];*)
