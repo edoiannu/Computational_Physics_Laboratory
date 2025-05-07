@@ -89,8 +89,7 @@ applicaimpulsi[grafo_] := MapAt[Apply[p, #] &, grafo, {All, 1}]
 
 (*procedura che restituisce le equazioni di conservazione dei momenti delle linee interne,
 in termini dei momenti esterni*)
-generaequazioni[grafo_] := Module[{indici, npt, nvert, impulsi, equazioni, impulsivertice, eq,
-incognite, globale, impulsiinterni},
+generaequazioni[grafo_] := Module[{temp},
 
 indici = Flatten[grafo[[All, 1]]]; (*converto a una semplice lista di numeri le coppie del grafo,
 saranno le etichette di ogni punto del grafo, interno o esterno che sia*)
@@ -133,7 +132,7 @@ Return[impulsiinterni]
 
 (*procedura che preso un grafo ne costruisce un'espressione data dal prodotto di funzioni di vertice e di linee
 interne (propagatori), alle quali assegneremo poi una precisa espressione analitica*)
-diagramma[grafo_] := Module[{numeriinterni, regole, interne, propagatori, vertici, linee, lineevertice, vertice},
+diagramma[grafo_] := Module[{numeriinterni},
 
 (*inseriamo in 'regole' le equazioni di conservazione dei momenti interni*)
 regole = generaequazioni[grafo];
