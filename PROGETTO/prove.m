@@ -1,81 +1,85 @@
 (* ::Package:: *)
 
-(*comando che aggiunge un vertice a 3 a una linea di un grafo
-    pos_ : indice del segmento/coppia di numeri che voglio rimpiazzare
-  ext_ : indice del punto esterno che voglio aggiungere
-  int_ : indice del punto interno che voglio aggiungere
-grafo_ : grafo che sto considerando*)
-inserisci3[pos_, ext_, int_, grafo_] := Module[{temp, pippo} (*'pippo' \[EGrave] un contenitore temporaneo*),
-(*rimuovo un segmento e lo rimpiazzo con 3 altri segmenti*)
-(*aggiunta di un punto nel grafico*)
-temp = ReplacePart[grafo[[1]],
-pippo[ {ext,int}(*punto esterno che si attacca al nuovo vertice*) , {grafo[[1,pos,1]],int} , {grafo[[1,pos,2]],int} (*divide in due la linea esterna pos-esima aggiungendo un punto int al suo interno*)],
-pos]; (*sostituisco l'elemento pos-esimo*)
-(*1 -> 3 non e' una sostituzione ammessa, per cui usiamo il contenitore pippo come un unico oggetto*)
-temp =temp/.{pippo->Sequence};
-(*aggiunta degli indici di Lorentz e di colore*)
-Clear[pippo];
-pippo = Join[grafo[[2]], {mu[ext], If[MemberQ[grafo[[2]], mu[grafo[[1, pos, 2]]]], Nothing, mu[grafo[[1, pos, 2]]]](*mu[grafo[[1, pos, 2]]]*), mu[int]}];
-temp = Join[{temp}, {pippo}];
-Clear[pippo];
-pippo = Join[grafo[[3]], {c[ext],  If[MemberQ[grafo[[3]], c[grafo[[1, pos, 2]]]], Nothing, c[grafo[[1, pos, 2]]]](*c[grafo[[1, pos, 2]]]*), c[int]}];
-temp = Join[temp, {pippo}];
+(*struttura del grafo di partenza:*)
+(*grafobase = {{{1, -1}, mu[1], c[1]}, {{2, -1}, mu[2], c[2]}, {{3, -1}, mu[3], c[3]}};*)
 
-Return[temp](*ritorna il grafo modificato*)
+(*comando che aggiunge un vertice a 3 a una linea di un grafo,
+rimuovendo un segmento e rimpiazzandolo con altri tre*)
+inserisci3[pos_ (*indice del segmento/coppia di numeri che voglio rimpiazzare*),
+ext_ (*indice del punto esterno che voglio aggiungere*),
+int_ (*indice del punto interno che voglio aggiungere*),
+grafo_ (*grafo che sto considerando*)] := Module[{temp, pippo, pos1, pos2},
+(*'pippo' e 'temp' sono due contenitori temporanei*)
+pos1 = grafo[[pos, 1, 1]]; (*primo indice della linea pos-esima che voglio rimuovere*)
+pos2 = grafo[[pos, 1, 2]]; (*secondo indice della linea pos-esima che voglio rimuovere*)
+temp = ReplacePart[grafo,
+pippo[ {{ext,int}, mu[ext], c[ext]}(*punto esterno che si attacca al nuovo vertice/punto interno che abbiamo aggiunto*),
+{{pos1,int}, mu[pos1], c[pos1], If[pos1 < 0, Sequence @@ {mu[int], c[int]}, Nothing]},
+{{pos2,int}, mu[pos2], c[pos2], If[pos2 < 0,  Sequence @@ {mu[int], c[int]}, Nothing]}
+(*divide in due la linea pos-esima aggiungendo un punto al suo interno, e se una delle nuove linee \[EGrave] descritta da
+due indici negativi (\[EGrave] una linea interna) allora aggiungo gli indici di entrambi i suoi estremi (\[EGrave] un propagatore)*)],
+pos (*sostituisco l'elemento pos-esimo*)];
+(*1 -> 3 non e' una sostituzione ammessa, per cui usiamo il contenitore pippo come un unico oggetto
+per poi sostituirlo con una normale 'Sequence'*)
+temp =temp/.{pippo->Sequence};
+
+temp (*ritorna il grafo modificato*)
 ]; 
 
-inserzione3[grafo_] := Module[{nuovigrafi, indici, npt, nvert},
-indici = Flatten[grafo[[1]]]; (*comando che rimuove un livello di parentesi*)
-npt = Max[indici]; (*'indici' \[EGrave] una lista di liste, 'npt' \[EGrave] una lista che contiene l'elemento pi\[UGrave] grande di
-ciascuna lista*)
-nvert = Min[indici]; (*analogamente a npt ma con gli elementi minori*)
-(*su quale segmento agire, inserisci un punto esterno un vertice sull'elemento grafo tutto questo per ciascun segmento del mio grafo*)
-nuovigrafi = Table[inserisci3[i, npt + 1, nvert -1, grafo], {i, 1,  Length[grafo[[1]]]}
+(*comando che preso un grafo aggiunge ad esso tutti i possibili vertici a 3*)
+inserzione3[grafo_] := Module[{nuovigrafi (*lista dei nuovi grafi ottenuti da riempire*), indici,
+npt (*numero di punti esterni del grafo di partenza*), nvert (*numero di vertici del grafo di partenza*)},
+indici = Flatten[grafo[[All, 1]]]; (*'Flatten' \[EGrave] un comando che rimuove i livelli di parentesi*)
+npt = Max[indici]; (*'Max' restituisce l'elemento maggiore ella lista 'indici'*)
+nvert = Min[indici]; (*analogamente a 'Max' ma con l'elemento minore*)
+(*costruiamo la lista 'nuovigrafi' aggiungendo un vertice a 3 ad ogni riga usando una 'Table'*)
+nuovigrafi = Table[inserisci3[i, npt + 1, nvert -1, grafo], {i, 1,  Length[grafo]
+(*'Lenght' conta le coppie presenti nel grafo (il numero delle linee interne)*)}
 ];
-(*Lenght conta le coppie presenti nel grafo (il numero delle linee interne)*)
 Return[nuovigrafi]
 ];
 
-inserisci4[vertice_,ext_,grafo_]:=If[
-Count[grafo[[1]],vertice,2]===3, (*Count cerca un pattern (il vertice) all'interno del grafo al livello 2 di parentesi e restituisce quante volte appare*)
-(*Se e' verificato la condizione, ovvero che vertice e' un vertice a 3, allora aggiungo un nuovo punto esterno a suddetto vertice, tramite un 'Module'*)
-Module[{temp},
-
-temp = Append[grafo[[1]],{ext,vertice}];
-temp = Join[{temp}, {Append[grafo[[2]], mu[ext]]}, {Append[grafo[[3]], c[ext]]}];
-
-Return[temp]
-];
-,
-{}(*altrimenti non fare nulla, restituisci una lista vuota che alla fine butter\[OGrave] via*)
+(*comando che aggiunge una linea esterna a un vertice a 3 del grafo,*)
+inserisci4[vertice_ (*indice del vertice al quale voglio attaccare un segmento*),
+ext_ (*punto esterno che voglio aggiungere*), grafo_ (*grafo che sto considerando*)] := If[
+Count[grafo, vertice, Infinity]===3, (*'Count' cerca un pattern ('vertice') all'interno del grafo e restituisce
+quante volte appare. Se e' verificata la condizione, ovvero che 'vertice' appare 3 volte (e quindi \[EGrave] un vertice a 3),
+allora aggiungo un nuovo punto esterno al suddetto*)
+Append[grafo, {{ext, vertice}, mu[ext], c[ext]}],
+{}(*altrimenti non faccio nulla, restituisco una lista vuota che alla fine butter\[OGrave] via*)
 ];
 
-(*Aggiunta di vertice a 4 linee*)
-inserzione4[grafo_]:=Module[{indici,npt,nvert,nuovigrafi},
-indici = Flatten[grafo[[1]]]; (*converto a lista di numeri*)
+(*comando che preso un grafo aggiunge ad esso tutti i possibili vertici a 4*)
+inserzione4[grafo_]:=Module[{nuovigrafi (*lista dei nuovi grafi ottenuti da riempire*),
+npt (*numero di punti esterni del grafo di partenza*), nvert (*numero di vertici del grafo di partenza*), indici},
+indici = Flatten[grafo[[All, 1]]]; (*converto a una lista di singoli numeri le coppie del grafo*)
 npt = Max[indici];
 nvert = Min[indici];
-nuovigrafi = Table[inserisci4[i,npt+1,grafo], (*inserisci un nuovo punto npt+1 al grafo*)
-{i,-1,nvert,-1} (*loop sui vertici, da -1 a n vert con passi di -1*)
+nuovigrafi = Table[inserisci4[i, npt+1, grafo] (*inserisco un nuovo punto npt+1 al grafo*),
+{i, -1, nvert, -1} (*loop sui vertici, da -1 a nvert con passi di -1*)
 ];
 Return[nuovigrafi]
 ];
 
-(*procedura che iterativamente aggiunge punti esterni fino a raggiungere n punti esterni,
+(*comando che iterativamente aggiunge punti esterni a un grafo di partenza fino a raggiungere n punti esterni,
 aggiungendo vertici nuovi su tutti i grafi di ordine n-1 in tutti i modi possibili*)
-generagrafi[n_, grafo_] := Module[{temp, listagrafi,nuovigrafi3, nuovigrafi4, indici},
-indici = Flatten[grafo[[1]]];
-i = Max[indici]; (*numero di punti esterni*)
-listagrafi = {grafo}; (*grafobase \[EGrave] un grafo di una lista di grafi che sta crescendo*)
+generagrafi[n_, grafo_] := Module[{temp, listagrafi (*lista da riempire di tutti i nuovi grafi possibili*),
+nuovigrafi3 (*nuovi grafi ottenuti aggiungendo vertici a 3*),
+nuovigrafi4 (*nuovi grafi ottenuti aggiungendo vertici a 4*), indici},
+indici = Flatten[grafo[[All, 1]]];
+i = Max[indici]; (*numero di punti esterni di partenza*)
+listagrafi = {grafo}; (*lista di grafi che sta crescer\[AGrave]*)
 While[i < n,
-(*voglio agire su questi grafi vettorialmente*)
-nuovigrafi3 = Map[inserzione3, listagrafi]; (*applico 'inserzione3' ai grafi di tutta la lista di grafi*)
+(*voglio agire su questi grafi vettorialmente usando la procedura 'Map'*)
+nuovigrafi3 = Map[inserzione3, listagrafi]; (*applico 'inserzione3' a tutti i grafi ottenuti fino ad ora*)
 nuovigrafi3 = Flatten[nuovigrafi3, 1]; (*per rimuovere un livello di parentesi*)
-nuovigrafi4=Map[inserzione4,listagrafi];
-nuovigrafi4 = Flatten[nuovigrafi4,1];
-listagrafi = Join[nuovigrafi3, nuovigrafi4];
-listagrafi = DeleteCases[listagrafi,{}];
+nuovigrafi4 = Map[inserzione4,listagrafi]; (*applico 'inserzione4'*)
+nuovigrafi4 = Flatten[nuovigrafi4, 1];
+listagrafi = Join[nuovigrafi3, nuovigrafi4]; (*metto insieme con 'Join' tutti i grafi ottenuti*)
+listagrafi = DeleteCases[listagrafi,{}]; (*butto via gli elementi vuoti*)
 ++i;
 ];
 Return[listagrafi]
 ];
+
+
