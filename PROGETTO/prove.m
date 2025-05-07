@@ -82,4 +82,98 @@ listagrafi = DeleteCases[listagrafi,{}]; (*butto via gli elementi vuoti*)
 Return[listagrafi]
 ];
 
+(*procedura che restituisce la lista degli impulsi di grafo*)
+listaimpulsi[grafo_] := Map[Apply[p, #] &, grafo[[All, 1]]]
+(*procedura che restituisce il grafo in cui la coppia {i, j} viene sostituita da p[i, j]*)
+applicaimpulsi[grafo_] := MapAt[Apply[p, #] &, grafo, {All, 1}]
 
+(*procedura che restituisce le equazioni di conservazione dei momenti delle linee interne,
+in termini dei momenti esterni*)
+generaequazioni[grafo_] := Module[{indici, npt, nvert, impulsi, equazioni, impulsivertice, eq,
+incognite, globale, impulsiinterni},
+
+indici = Flatten[grafo[[All, 1]]]; (*converto a una semplice lista di numeri le coppie del grafo,
+saranno le etichette di ogni punto del grafo, interno o esterno che sia*)
+npt = Max[indici]; (*numero di punti esterni*)
+nvert = Min[indici]; (*numero di vertici*)
+
+(*lista degli impulsi p[i, j] di tutte i segmenti del nostro grafo*)
+impulsi = listaimpulsi[grafo]; (*applichiamo la "funzione" impulso p a ciascuna linea del grafo*)
+
+(*lista delle equazioni di conservazione del momento per ogni vertice del grafo*)
+(*'impulsivertice' \[EGrave] la lista degli impulsi entranti in un vertice*)
+equazioni = Table[impulsivertice = Join[Cases[impulsi, p[_, i]], -Cases[impulsi, p[i,_]]
+(*qui cambio il segno se l'indice del vertice sta al primo posto,
+il meno moltiplica ciascun degli argomenti della lista*)]; eq = Apply[Plus, impulsivertice] == 0
+(*questa riga \[EGrave] un'assegnazione: assegno ad 'eq' tutto ci\[OGrave] che sta a sx dell'uguale*); eq (*ritorno della
+singola equazione per il vertice i-esimo*), {i, -1, nvert, -1}];
+
+(*voglio rinominare i miei impulsi come p1, p2, ... invece di p[1,-1], p[2,-1], etc...*)
+(*il comando '/;' \[EGrave] un if, il comando prende 'i' e verifica che sia maggiore di 0,
+se lo \[EGrave] procede della sostituzione facendo cadere la 'j'*)
+equazioni = equazioni /. p[i_ /; i>0, j_] :> p[i]; 
+(*se avessi scritto solo la freccetta -> sarebbe stata una semplice sostituzione di una certa variabile p[i]
+all'interno dell'espressione, non una redefizione della funzione*)
+
+(*a questo punto le incognite rimaste da determinare sono gli impulsi delle linee interne, riconoscibili dal fatto
+che hanno ancora due argomenti*)
+incognite = Cases[equazioni, p[_, _], Infinity]; (*metto 'Infinity' perch\[EGrave] sono pigro e non ho voglia di cercare
+a quale livello devo trovare p[_,_]*)
+
+(*conservazione dei momenti esterni/conservazione globale del momento*)
+globale = Rule[p[npt], -Sum[p[k], {k, 1, npt-1}]]; (*'Rule' \[EGrave] un altro modo per scrivere la freccetta ->*)
+(*assegna p_n = - p_1 - p_2 - ... - p_{n-1} etc...*)
+
+equazioni = equazioni /. globale;
+impulsiinterni = Solve[equazioni, incognite]; (*risolvo 'equazioni' per 'incognite'*)
+
+Return[impulsiinterni]
+
+];
+
+(*procedura che preso un grafo ne costruisce un'espressione data dal prodotto di funzioni di vertice e di linee
+interne (propagatori), alle quali assegneremo poi una precisa espressione analitica*)
+diagramma[grafo_] := Module[{numeriinterni, regole, interne, propagatori, vertici, linee, lineevertice, vertice},
+
+(*inseriamo in 'regole' le equazioni di conservazione dei momenti interni*)
+regole = generaequazioni[grafo];
+
+(*in queste tre righe mi concentro sulle linee interne: 'interne' \[EGrave] una lista che contiene solo le linee
+interne del grafo, indicizzate da coppie di numeri e dai loro indici*)
+interne = Cases[grafo, {{i_ /; i<0, j_ /; j<0}, ___}]; (*prima di applicare gli impulsi*)
+numeriinterni = applicaimpulsi[interne] /. regole[[1]]; (*applico gli impulsi e sostituisco quelli delle linee
+interne con le leggi di conservazione del momento*)
+propagatori = Map[Prop, numeriinterni]; (*applico 'Prop' (oggetto non meglio specificato) ad ogni numero quantico
+che decidiamo di associare al nostro propagatore*)
+propagatori = Apply[Times, propagatori]; (*moltiplico i propagatori*)
+
+(*vediamo come possiamo estrarre i vertici*)
+vertici = Table[linee = applicaimpulsi[grafo] (*applico gli impulsi a tutte le righe del grafo*);
+lineevertice = Join[Cases[linee, {p[a_, i], rest___} :> {p[a, i], rest}],
+Cases[linee, {p[i, b_], rest___} :> {-p[i, b], rest}]]; (*impulsi delle linee che confluiscono nel vertice i-esimo*)
+(*se i due indici i & j e sono entrambi negativi, sostituisco p[i, j] con la regola di conservazione ad esso
+associata. Se uno dei due \[EGrave] positivo (ad esempio l'indice i) eseguo la sostituzione p[i,j]->p[i]*)
+lineevertice = lineevertice /. regole[[1]];
+lineevertice = lineevertice /. {p[i_ /; i>0, j_], rest___} :> {p[i], rest};
+lineevertice = lineevertice /. {momentum___, mu[j_], c[j_], mu[k_], c[k_]} :> If[j === i,{momentum, mu[j], c[j]}, {momentum, mu[k], c[k]}];
+(*definisco una certa funzione V[i] e la associo a 'impulsivertice'*)
+If[Length[lineevertice] === 3, vertice = V3[i][lineevertice], vertice = V4[i][lineevertice]];
+vertice
+,
+{i, -1, nvert, -1}
+];
+
+vertici = Apply[Times, vertici]; (*moltiplico i vertici*)
+
+Return[propagatori*vertici]
+];
+
+generadiagrammi[n_, grafo_] := Module[{temp},
+
+grafi = generagrafi[n, grafo]; (*generiamo i grafi*)
+
+diagrammi = Map[diagramma, grafi];
+
+Return[diagrammi]
+
+]
