@@ -10,12 +10,12 @@ ext_ (*indice del punto esterno che voglio aggiungere*),
 int_ (*indice del punto interno che voglio aggiungere*),
 grafo_ (*grafo che sto considerando*)] := Module[{temp, pippo, pos1, pos2},
 (*'pippo' e 'temp' sono due contenitori temporanei*)
-pos1 = grafo[[pos, 1, 1]]; (*primo indice della linea pos-esima che voglio rimuovere*)
-pos2 = grafo[[pos, 1, 2]]; (*secondo indice della linea pos-esima che voglio rimuovere*)
+pos1 = grafo[[pos, (*1,*) 1]]; (*primo indice della linea pos-esima che voglio rimuovere*)
+pos2 = grafo[[pos, (*1,*) 2]]; (*secondo indice della linea pos-esima che voglio rimuovere*)
 temp = ReplacePart[grafo,
-pippo[ {{ext,int}, mu[ext], c[ext]}(*punto esterno che si attacca al nuovo vertice/punto interno che abbiamo aggiunto*),
-{{pos1,int}, mu[pos1], c[pos1], If[pos1 < 0, Sequence @@ {mu[int], c[int]}, Nothing]},
-{{pos2,int}, mu[pos2], c[pos2], If[pos2 < 0,  Sequence @@ {mu[int], c[int]}, Nothing]}
+pippo[ (*{*){ext,int}(*, mu[ext], c[ext]}*)(*punto esterno che si attacca al nuovo vertice/punto interno che abbiamo aggiunto*),
+(*{*){pos1,int}(*, mu[pos1], c[pos1], If[pos1 < 0, Sequence @@ {mu[int], c[int]}, Nothing]}*),
+(*{*){pos2,int}(*, mu[pos2], c[pos2], If[pos2 < 0,  Sequence @@ {mu[int], c[int]}, Nothing]}*)
 (*divide in due la linea pos-esima aggiungendo un punto al suo interno, e se una delle nuove linee \[EGrave] descritta da
 due indici negativi (\[EGrave] una linea interna) allora aggiungo gli indici di entrambi i suoi estremi (\[EGrave] un propagatore)*)],
 pos (*sostituisco l'elemento pos-esimo*)];
@@ -29,7 +29,7 @@ temp (*ritorna il grafo modificato*)
 (*comando che preso un grafo aggiunge ad esso tutti i possibili vertici a 3*)
 inserzione3[grafo_] := Module[{nuovigrafi (*lista dei nuovi grafi ottenuti da riempire*), indici,
 npt (*numero di punti esterni del grafo di partenza*), nvert (*numero di vertici del grafo di partenza*)},
-indici = Flatten[grafo[[All, 1]]]; (*'Flatten' \[EGrave] un comando che rimuove i livelli di parentesi*)
+indici = Flatten[grafo(*[[All, 1]]*)]; (*'Flatten' \[EGrave] un comando che rimuove i livelli di parentesi*)
 npt = Max[indici]; (*'Max' restituisce l'elemento maggiore ella lista 'indici'*)
 nvert = Min[indici]; (*analogamente a 'Max' ma con l'elemento minore*)
 (*costruiamo la lista 'nuovigrafi' aggiungendo un vertice a 3 ad ogni riga usando una 'Table'*)
@@ -45,14 +45,14 @@ ext_ (*punto esterno che voglio aggiungere*), grafo_ (*grafo che sto considerand
 Count[grafo, vertice, Infinity]===3, (*'Count' cerca un pattern ('vertice') all'interno del grafo e restituisce
 quante volte appare. Se e' verificata la condizione, ovvero che 'vertice' appare 3 volte (e quindi \[EGrave] un vertice a 3),
 allora aggiungo un nuovo punto esterno al suddetto*)
-Append[grafo, {{ext, vertice}, mu[ext], c[ext]}],
+Append[grafo, (*{*){ext, vertice}(* mu[ext], c[ext]}*)],
 {}(*altrimenti non faccio nulla, restituisco una lista vuota che alla fine butter\[OGrave] via*)
 ];
 
 (*comando che preso un grafo aggiunge ad esso tutti i possibili vertici a 4*)
 inserzione4[grafo_]:=Module[{nuovigrafi (*lista dei nuovi grafi ottenuti da riempire*),
 npt (*numero di punti esterni del grafo di partenza*), nvert (*numero di vertici del grafo di partenza*), indici},
-indici = Flatten[grafo[[All, 1]]]; (*converto a una lista di singoli numeri le coppie del grafo*)
+indici = Flatten[grafo(*[[All, 1]]*)]; (*converto a una lista di singoli numeri le coppie del grafo*)
 npt = Max[indici];
 nvert = Min[indici];
 nuovigrafi = Table[inserisci4[i, npt+1, grafo] (*inserisco un nuovo punto npt+1 al grafo*),
@@ -66,7 +66,7 @@ aggiungendo vertici nuovi su tutti i grafi di ordine n-1 in tutti i modi possibi
 generagrafi[n_, grafo_] := Module[{temp, listagrafi (*lista da riempire di tutti i nuovi grafi possibili*),
 nuovigrafi3 (*nuovi grafi ottenuti aggiungendo vertici a 3*),
 nuovigrafi4 (*nuovi grafi ottenuti aggiungendo vertici a 4*), indici},
-indici = Flatten[grafo[[All, 1]]];
+indici = Flatten[grafo(*[[All, 1]]*)];
 i = Max[indici]; (*numero di punti esterni di partenza*)
 listagrafi = {grafo}; (*lista di grafi che sta crescer\[AGrave]*)
 While[i < n,
@@ -83,7 +83,7 @@ Return[listagrafi]
 ];
 
 (*procedura che restituisce la lista degli impulsi di grafo*)
-listaimpulsi[grafo_] := Map[Apply[p, #] &, grafo[[All, 1]]]
+listaimpulsi[grafo_] := Map[Apply[p, #] &, grafo(*[[All, 1]]*)]
 (*procedura che restituisce il grafo in cui la coppia {i, j} viene sostituita da p[i, j]*)
 applicaimpulsi[grafo_] := MapAt[Apply[p, #] &, grafo, {All, 1}]
 
@@ -91,7 +91,7 @@ applicaimpulsi[grafo_] := MapAt[Apply[p, #] &, grafo, {All, 1}]
 in termini dei momenti esterni*)
 generaequazioni[grafo_] := Module[{temp},
 
-indici = Flatten[grafo[[All, 1]]]; (*converto a una semplice lista di numeri le coppie del grafo,
+indici = Flatten[grafo(*[[All, 1]]*)]; (*converto a una semplice lista di numeri le coppie del grafo,
 saranno le etichette di ogni punto del grafo, interno o esterno che sia*)
 npt = Max[indici]; (*numero di punti esterni*)
 nvert = Min[indici]; (*numero di vertici*)
@@ -130,16 +130,24 @@ Return[impulsiinterni]
 
 ];
 
+addIndices[grafo_] := Module[{newgrafo},
+
+newgrafo = Table[{grafo[[i]], mu[grafo[[i, 1]]], c[grafo[[i, 1]]], If[grafo[[i, 1]] < 0, Sequence @@ {mu[grafo[[i, 2]]], c[grafo[[i, 2]]]}, Nothing]}, {i, 1, Length[grafo]}]
+
+];
+
 (*procedura che preso un grafo ne costruisce un'espressione data dal prodotto di funzioni di vertice e di linee
 interne (propagatori), alle quali assegneremo poi una precisa espressione analitica*)
-diagramma[grafo_] := Module[{numeriinterni},
+diagramma[grafo_] := Module[{numeriinterni, newgrafo},
+
+newgrafo = addIndices[grafo];
 
 (*inseriamo in 'regole' le equazioni di conservazione dei momenti interni*)
 regole = generaequazioni[grafo];
 
 (*in queste tre righe mi concentro sulle linee interne: 'interne' \[EGrave] una lista che contiene solo le linee
 interne del grafo, indicizzate da coppie di numeri e dai loro indici*)
-interne = Cases[grafo, {{i_ /; i<0, j_ /; j<0}, ___}]; (*prima di applicare gli impulsi*)
+interne = Cases[newgrafo, {{i_ /; i<0, j_ /; j<0}, ___}]; (*prima di applicare gli impulsi*)
 numeriinterni = applicaimpulsi[interne] /. regole[[1]]; (*applico gli impulsi e sostituisco quelli delle linee
 interne con le leggi di conservazione del momento*)
 propagatori = Map[Prop, numeriinterni]; (*applico 'Prop' (oggetto non meglio specificato) ad ogni numero quantico
@@ -147,7 +155,7 @@ che decidiamo di associare al nostro propagatore*)
 propagatori = Apply[Times, propagatori]; (*moltiplico i propagatori*)
 
 (*vediamo come possiamo estrarre i vertici*)
-vertici = Table[linee = applicaimpulsi[grafo] (*applico gli impulsi a tutte le righe del grafo*);
+vertici = Table[linee = applicaimpulsi[newgrafo] (*applico gli impulsi a tutte le righe del grafo*);
 lineevertice = Join[Cases[linee, {p[a_, i], rest___} :> {p[a, i], rest}],
 Cases[linee, {p[i, b_], rest___} :> {-p[i, b], rest}]]; (*impulsi delle linee che confluiscono nel vertice i-esimo*)
 (*se i due indici i & j e sono entrambi negativi, sostituisco p[i, j] con la regola di conservazione ad esso
@@ -165,6 +173,7 @@ vertice
 vertici = Apply[Times, vertici]; (*moltiplico i vertici*)
 
 Return[propagatori*vertici]
+
 ];
 
 generadiagrammi[n_, grafo_] := Module[{temp},
