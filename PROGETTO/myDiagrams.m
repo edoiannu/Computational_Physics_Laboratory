@@ -162,7 +162,7 @@ Cases[linee, {p[i, b_], rest___} :> {-p[i, b], rest}]]; (*impulsi delle linee ch
 associata. Se uno dei due \[EGrave] positivo (ad esempio l'indice i) eseguo la sostituzione p[i,j]->p[i]*)
 lineevertice = lineevertice /. regole[[1]];
 lineevertice = lineevertice /. {p[i_ /; i>0, j_], rest___} :> {p[i], rest};
-lineevertice = lineevertice /. {momentum___, mu[j_], c[j_], mu[k_], c[k_]} :> If[j === i,{momentum, mu[j], c[j]}, {momentum, mu[k], c[k]}];
+lineevertice = lineevertice /. {momentum___, mu[j_], c[j_], mu[k_], c[k_]} :> If[j === i, {momentum, mu[k], c[k]}, {momentum, mu[j], c[j]}];
 (*definisco una certa funzione V[i] e la associo a 'impulsivertice'*)
 If[Length[lineevertice] === 3, vertice = V3[lineevertice], vertice = V4[lineevertice]];
 vertice
