@@ -1,0 +1,128 @@
+%────────────────────────────────────────────────────────────────────────────
+% Template LaTeX per relazione in stile articolo scientifico
+% Autore: [Tuo Nome]
+% Data: \today
+%────────────────────────────────────────────────────────────────────────────
+\documentclass[11pt,a4paper]{article}
+
+% ────────────────────────────────────────────────────────────
+% Impaginazione e font
+% ────────────────────────────────────────────────────────────
+\usepackage[margin=2.5cm]{geometry}   % margini generosi
+\usepackage{lmodern}                  % font Latin Modern (professionale)
+\usepackage[T1]{fontenc}              % giusta codifica font
+
+% ────────────────────────────────────────────────────────────
+% Tipografia e microtipografia
+% ────────────────────────────────────────────────────────────
+\usepackage{microtype}                % migliore giustezza dei caratteri
+\usepackage{setspace}                 % controllo spaziatura
+\onehalfspacing                       % 1.5 interlinea (più leggibile)
+
+% ────────────────────────────────────────────────────────────
+% Matematica e simboli
+% ────────────────────────────────────────────────────────────
+\usepackage{amsmath,amssymb,amsfonts} % pacchetti AMS
+\usepackage{bm}                       % grassetto per vettori/matrici
+\usepackage{slashed}                  % \slashed{p} (utile in QCD)
+
+% ────────────────────────────────────────────────────────────
+% Figure, tabelle e codice
+% ────────────────────────────────────────────────────────────
+\usepackage{graphicx}                 % includere immagini
+\usepackage{subcaption}               % sottocaption per subfigure
+\usepackage{booktabs}                 % tabelle professionali
+\usepackage{caption}                  % personalizzare caption
+\usepackage{listings}                 % codice sorgente
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  captionpos=b
+}
+
+% ────────────────────────────────────────────────────────────
+% Link e riferimenti incrociati
+% ────────────────────────────────────────────────────────────
+\usepackage[hidelinks]{hyperref}      % link senza colori
+
+% ────────────────────────────────────────────────────────────
+% Header & Footer
+% ────────────────────────────────────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Relazione su QCD}
+\rhead{[Tuo Nome]}
+\cfoot{\thepage}
+
+% ────────────────────────────────────────────────────────────
+% Titolo, autori, abstract
+% ────────────────────────────────────────────────────────────
+\title{\textbf{Studio di QCD tramite Mathematica}}
+\author{[Tuo Nome] \\ \small Università degli Studi di …}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+  Vogliamo usare Mathematica per generare ampiezze di Feynman, quindi modellizzare una situazione fisica (in questo caso di fisica delle particelle), introducendo un formalismo e creando notazioni.
+
+  Per fare un modello dobbiamo scegliere prima di tutto il tipo di interazione, noi studieremo i processi $gg \rightarrow gg$ e $gg \rightarrow ggg$, quindi processi puramente di QCD.
+
+  Prime di tutto implementiamo delle procedure per generare tutti i possibili grafi connessi collegando tutti i punti tra loro di loro. I punti esterni vanno tenuti fermi e poi disegnamo tutte le possibili linee interne.
+
+  Una volta che ho tutti i grafi ho una base geometrica per generare qualcosa di fisico: regole di Feynman e conservazione del quadriimpulso di ciascun diagramma (la conservazione di tutti gli impulsi entranti deve fare zero, l'idea è di trovare un modo automatico per implementare la conservazione dell'impulso a ciascun vertice).
+
+  Implementiamo una teoria di campo per il nostro modello, indicizzando i punti esterni con interi positivi e i punti interni con interi negativi. Le linee interne sono propagatori a due punti.
+
+  Livello successivo: Lagrangiana, regole di Feynman.
+
+\end{abstract}
+
+% ────────────────────────────────────────────────────────────
+% Struttura tipica: sezioni
+% ────────────────────────────────────────────────────────────
+\section{Introduzione}
+% - Contestualizza QCD
+% - Motivazioni del lavoro
+% - Breve panoramica dei contenuti
+
+\section{Formalismo Teorico}
+% - Lagrangiana della QCD
+% - Simmetrie e proprietà fondamentali
+% - Quantizzazione e gauge fixing
+
+\section{Implementazione in Mathematica}
+% - Uso di pacchetti (FeynCalc, etc.)
+% - Codice esemplificativo
+\begin{lstlisting}[language=Mathematica,caption={Esempio di calcolo con FeynCalc}]
+(* Setup *)
+<< FeynCalc`
+(* Definizione Lagrangiana *)
+lag = GAD[\mu,\nu]^2/(4*g^2);
+(* Calcolo di un propagatore *)
+Prop = FAD[{q,0}];
+\end{lstlisting}
+
+\section{Risultati}
+
+\section{Discussione}
+% - Interpretazione dei risultati
+% - Confronto con letteratura
+
+\section{Conclusioni}
+% - Punti chiave emersi
+% - Prospettive future
+
+\appendix
+\section{Dettagli di calcolo}
+% - Espandi formule troppo lunghe
+% - Codice completo se serve
+
+\bibliographystyle{unsrt}
+\bibliography{bibliografia}  % crea bibliografia in file .bib
+
+\end{document}
